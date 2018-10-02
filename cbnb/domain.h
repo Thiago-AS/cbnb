@@ -1,3 +1,4 @@
+/* Copyright 2018: Thiago Araujo da Siva 15/0149832*/
 #ifndef DOMAIN_H_INCLUDED
 #define DOMAIN_H_INCLUDED
 
@@ -11,15 +12,13 @@
 using namespace std;
 
 class Agency{
-
-private:
+ private:
     string code;
 
-    void Validate(string) throw (invalid_argument);
+    void Validate(string) throw(invalid_argument);
 
-public:
-
-    void SetCode(string) throw (invalid_argument);
+ public:
+    void SetCode(string) throw(invalid_argument);
 
     string GetCode() const {
         return code;
@@ -27,15 +26,13 @@ public:
 };
 
 class Bank{
-
-private:
+ private:
     string code;
 
-    void Validate(string) throw (invalid_argument);
+    void Validate(string) throw(invalid_argument);
 
-public:
-
-    void SetCode(string) throw (invalid_argument);
+ public:
+    void SetCode(string) throw(invalid_argument);
 
     string GetCode() const {
         return code;
@@ -43,15 +40,13 @@ public:
 };
 
 class AccommodationCapacity{
-
-private:
+ private:
     int amount;
 
-    void Validate(int) throw (invalid_argument);
+    void Validate(int) throw(invalid_argument);
 
-public:
-
-    void SetAmount(int) throw (invalid_argument);
+ public:
+    void SetAmount(int) throw(invalid_argument);
 
     int GetAmount() const {
         return amount;
@@ -60,15 +55,13 @@ public:
 
 
 class DailyFee{
-
-private:
+ private:
     int value;
 
-    void Validate(int) throw (invalid_argument);
+    void Validate(int) throw(invalid_argument);
 
-public:
-
-    void SetValue(int) throw (invalid_argument);
+ public:
+    void SetValue(int) throw(invalid_argument);
 
     int GetValue() const {
         return value;
@@ -76,16 +69,15 @@ public:
 };
 
 class Date{
-
-private:
+ private:
     string value;
-    vector<string> valid_months = {"jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"};
+    vector<string> valid_months = {"jan", "fev", "mar", "abr", "mai", "jun",
+    "jul", "ago", "set", "out", "nov", "dez"};
 
-    void Validate(string) throw (invalid_argument);
+    void Validate(string) throw(invalid_argument);
 
-public:
-
-    void SetValue(string) throw (invalid_argument);
+ public:
+    void SetValue(string) throw(invalid_argument);
 
     string GetValue() const {
         return value;
@@ -93,15 +85,13 @@ public:
 };
 
 class ExpirationDate{
-
-private:
+ private:
     string value;
 
-    void Validate(string) throw (invalid_argument);
+    void Validate(string) throw(invalid_argument);
 
-public:
-
-    void SetValue(string) throw (invalid_argument);
+ public:
+    void SetValue(string) throw(invalid_argument);
 
     string GetValue() const {
         return value;
@@ -109,15 +99,15 @@ public:
 };
 
 class State{
-
-private:
+ private:
     string code;
-    vector<string> valid_states = {"AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"};
-    void Validate(string) throw (invalid_argument);
+    vector<string> valid_states = {"AC", "AL", "AP", "AM", "BA", "CE", "DF",
+    "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ",
+    "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"};
+    void Validate(string) throw(invalid_argument);
 
-public:
-
-    void SetCode(string) throw (invalid_argument);
+ public:
+    void SetCode(string) throw(invalid_argument);
 
     string GetCode() const {
         return code;
@@ -125,15 +115,13 @@ public:
 };
 
 class Identifier{
-
-private:
+ private:
     string code;
 
-    void Validate(string) throw (invalid_argument);
+    void Validate(string) throw(invalid_argument);
 
-public:
-
-    void SetCode(string) throw (invalid_argument);
+ public:
+    void SetCode(string) throw(invalid_argument);
 
     string GetCode() const {
         return code;
@@ -141,15 +129,13 @@ public:
 };
 
 class Name{
-
-private:
+ private:
     string code;
 
-    void Validate(string) throw (invalid_argument);
+    void Validate(string) throw(invalid_argument);
 
-public:
-
-    void SetCode(string) throw (invalid_argument);
+ public:
+    void SetCode(string) throw(invalid_argument);
 
     string GetCode() const {
         return code;
@@ -157,16 +143,14 @@ public:
 };
 
 class CreditCardNumber{
-
-private:
+ private:
     string code;
 
     bool CheckLuhn(string);
-    void Validate(string) throw (invalid_argument);
+    void Validate(string) throw(invalid_argument);
 
-public:
-
-    void SetCode(string) throw (invalid_argument);
+ public:
+    void SetCode(string) throw(invalid_argument);
 
     string GetCode() const {
         return code;
@@ -174,15 +158,13 @@ public:
 };
 
 class CheckingAccount{
-
-private:
+ private:
     string code;
 
-    void Validate(string) throw (invalid_argument);
+    void Validate(string) throw(invalid_argument);
 
-public:
-
-    void SetCode(string) throw (invalid_argument);
+ public:
+    void SetCode(string) throw(invalid_argument);
 
     string GetCode() const {
         return code;
@@ -190,15 +172,13 @@ public:
 };
 
 class Password{
-
-private:
+ private:
     string code;
 
-    void Validate(string) throw (invalid_argument);
+    void Validate(string) throw(invalid_argument);
 
-public:
-
-    void SetCode(string) throw (invalid_argument);
+ public:
+    void SetCode(string) throw(invalid_argument);
 
     string GetCode() const {
         return code;
@@ -206,19 +186,17 @@ public:
 };
 
 class AccommodationType{
-
-private:
+ private:
     string code;
 
-    void Validate(string) throw (invalid_argument);
+    void Validate(string) throw(invalid_argument);
 
-public:
-
-    void SetCode(string) throw (invalid_argument);
+ public:
+    void SetCode(string) throw(invalid_argument);
 
     string GetCode() const {
         return code;
     }
 };
 
-#endif // DOMAIN_H_INCLUDED
+#endif  // DOMAIN_H_INCLUDED

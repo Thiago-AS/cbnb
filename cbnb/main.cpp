@@ -1,14 +1,13 @@
 #include <iostream>
 #include "domain.h"
 
-int main(){
+int main() {
     Date date;
-    try{
+    try {
     date.SetValue("1111a");
     cout << "Deu bom";
     }
-    catch (exception& e)
-    {
+    catch (exception& e) {
     cout << e.what() << '\n';
     }
     return 0;
