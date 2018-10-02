@@ -505,7 +505,7 @@ void UtCheckingAccount::SetUp() {
     cout << "\n-----------------------------------------------------------------------------------" << endl;
     cout << "Starting checking_account unit test" << endl;
     checking_account = nullptr;
-    checking_account = new CheckingAccount();
+    checking_account = new CheckingAccountNumber();
     if (checking_account != nullptr)
         cout << "CheckingAccount unit test successfully started: Object checking_account created successfully" << endl;
     else

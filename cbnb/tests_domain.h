@@ -70,7 +70,7 @@ class UtDailyFee {
 class UtDate {
  private:
     const string valid_value   = "22/fev/2018";
-    const vector<string> invalid_values = {"32/fev/2018", "22/fev/3012", "22/02/2012", "22/2/2012", "2202//3012"};
+    const vector<string> invalid_values = {"31/nov/2018", "22/fev/3012", "22/02/2012", "22/2/2012", "2202//3012"};
 
     Date *date;
 
@@ -168,7 +168,7 @@ class UtCheckingAccount {
     const string valid_value   = "123456";
     const vector<string> invalid_values = {"1234", "1234567", "123a56"};
 
-    CheckingAccount *checking_account;
+    CheckingAccountNumber *checking_account;
 
     void SetUp();
     void TearDown();

@@ -157,7 +157,7 @@ class CreditCardNumber {
     }
 };
 
-class CheckingAccount {
+class CheckingAccountNumber {
  private:
     string code;
 

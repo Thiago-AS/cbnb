@@ -53,7 +53,7 @@ void DailyFee::SetValue(int value) throw(invalid_argument) {
 
 void Date::Validate(string value) throw(invalid_argument) {
     int slash_counter = 0, int_day, int_year;
-    bool valid_month = false;
+    bool valid_month = false, is_leap_year = false;
     string sub_string, day, month, year;
     vector <string> tokens;
     std::istringstream iss(value);
@@ -112,7 +112,19 @@ void Date::Validate(string value) throw(invalid_argument) {
     if (int_day < 1 || int_day > 31)
         throw invalid_argument("Invalid argument.");
 
-    // TODO(myself) VERIFY DAY BASED ON MONTH
+    if ((month == "abr" || month == "jun" || month == "set" || month == "nov") && int_day > 30)
+        throw invalid_argument("Invalid argument.");
+
+    if (((int_year % 4 == 0) && (int_year % 100 != 0)) || (int_year % 400 == 0))
+        is_leap_year = true;
+
+    if ((month == "fev") && (!is_leap_year) && (int_day > 28))
+        throw invalid_argument("Invalid argument.");
+
+    if ((month == "fev") && (is_leap_year) && (int_day > 29)){
+        throw invalid_argument("Invalid argument.");
+    }
+
 }
 
 void Date::SetValue(string value) throw(invalid_argument) {
@@ -192,22 +204,13 @@ void State::SetCode(string code) throw(invalid_argument) {
 }
 
 void Identifier::Validate(string code) throw(invalid_argument) {
-    bool invalid_indentifier = false;
     if (code.size() != 5)
         throw invalid_argument("Invalid argument.");
 
     for (int i = 0; i < code.size(); i++) {
-        if (!islower(code.at(i)))
-            invalid_indentifier = true;
+        if (!islower(code.at(i)) || !isalpha(code.at(i)))
+            throw invalid_argument("Invalid argument.");
     }
-
-    for (int i = 0; i < code.size(); i++) {
-        if (!isalpha(code.at(i)))
-            invalid_indentifier = true;
-    }
-
-    if (invalid_indentifier)
-        throw invalid_argument("Invalid argument.");
 }
 
 void Identifier::SetCode(string code) throw(invalid_argument) {
@@ -281,7 +284,7 @@ void CreditCardNumber::SetCode(string code) throw(invalid_argument) {
     this->code = code;
 }
 
-void CheckingAccount::Validate(string code) throw(invalid_argument) {
+void CheckingAccountNumber::Validate(string code) throw(invalid_argument) {
     if (code.size() != 6)
         throw invalid_argument("Invalid argument.");
 
@@ -291,7 +294,7 @@ void CheckingAccount::Validate(string code) throw(invalid_argument) {
     }
 }
 
-void CheckingAccount::SetCode(string code) throw(invalid_argument) {
+void CheckingAccountNumber::SetCode(string code) throw(invalid_argument) {
     Validate(code);
     this->code = code;
 }
