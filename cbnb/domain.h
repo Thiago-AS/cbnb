@@ -11,7 +11,7 @@
 
 using namespace std;
 
-class Agency{
+class Agency {
  private:
     string code;
 
@@ -25,7 +25,7 @@ class Agency{
     }
 };
 
-class Bank{
+class Bank {
  private:
     string code;
 
@@ -39,7 +39,7 @@ class Bank{
     }
 };
 
-class AccommodationCapacity{
+class AccommodationCapacity {
  private:
     int amount;
 
@@ -54,7 +54,7 @@ class AccommodationCapacity{
 };
 
 
-class DailyFee{
+class DailyFee {
  private:
     int value;
 
@@ -68,10 +68,10 @@ class DailyFee{
     }
 };
 
-class Date{
+class Date {
  private:
     string value;
-    vector<string> valid_months = {"jan", "fev", "mar", "abr", "mai", "jun",
+    const vector<string> valid_months = {"jan", "fev", "mar", "abr", "mai", "jun",
     "jul", "ago", "set", "out", "nov", "dez"};
 
     void Validate(string) throw(invalid_argument);
@@ -84,7 +84,7 @@ class Date{
     }
 };
 
-class ExpirationDate{
+class ExpirationDate {
  private:
     string value;
 
@@ -98,10 +98,10 @@ class ExpirationDate{
     }
 };
 
-class State{
+class State {
  private:
     string code;
-    vector<string> valid_states = {"AC", "AL", "AP", "AM", "BA", "CE", "DF",
+    const vector<string> valid_states = {"AC", "AL", "AP", "AM", "BA", "CE", "DF",
     "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ",
     "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"};
     void Validate(string) throw(invalid_argument);
@@ -114,7 +114,7 @@ class State{
     }
 };
 
-class Identifier{
+class Identifier {
  private:
     string code;
 
@@ -128,7 +128,7 @@ class Identifier{
     }
 };
 
-class Name{
+class Name {
  private:
     string code;
 
@@ -142,7 +142,7 @@ class Name{
     }
 };
 
-class CreditCardNumber{
+class CreditCardNumber {
  private:
     string code;
 
@@ -157,7 +157,7 @@ class CreditCardNumber{
     }
 };
 
-class CheckingAccount{
+class CheckingAccount {
  private:
     string code;
 
@@ -171,7 +171,7 @@ class CheckingAccount{
     }
 };
 
-class Password{
+class Password {
  private:
     string code;
 
@@ -185,10 +185,10 @@ class Password{
     }
 };
 
-class AccommodationType{
+class AccommodationType {
  private:
     string code;
-    vector<string> valid_accomodations = {"Apartamento", "Casa", "Flat"};
+    const vector<string> valid_accomodations = {"Apartamento", "Casa", "Flat"};
 
     void Validate(string) throw(invalid_argument);
 
