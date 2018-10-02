@@ -2,6 +2,11 @@
 #define DOMAIN_H_INCLUDED
 
 #include <stdexcept>
+#include <cctype>
+#include <string>
+#include <sstream>
+#include <vector>
+#include <iostream>
 
 using namespace std;
 
@@ -10,13 +15,13 @@ class Agency{
 private:
     string code;
 
-    void validate(int) throw (invalid_argument);
+    void Validate(string) throw (invalid_argument);
 
 public:
 
-    void SetCode(int) throw (invalid_argument);
+    void SetCode(string) throw (invalid_argument);
 
-    int GetCode() const {
+    string GetCode() const {
         return code;
     }
 };
@@ -26,13 +31,13 @@ class Bank{
 private:
     string code;
 
-    void validate(int) throw (invalid_argument);
+    void Validate(string) throw (invalid_argument);
 
 public:
 
-    void SetCode(int) throw (invalid_argument);
+    void SetCode(string) throw (invalid_argument);
 
-    int GetCode() const {
+    string GetCode() const {
         return code;
     }
 };
@@ -40,9 +45,9 @@ public:
 class AccommodationCapacity{
 
 private:
-    string amount;
+    int amount;
 
-    void validate(int) throw (invalid_argument);
+    void Validate(int) throw (invalid_argument);
 
 public:
 
@@ -57,9 +62,9 @@ public:
 class DailyFee{
 
 private:
-    string value;
+    int value;
 
-    void validate(int) throw (invalid_argument);
+    void Validate(int) throw (invalid_argument);
 
 public:
 
@@ -74,14 +79,15 @@ class Date{
 
 private:
     string value;
+    vector<string> valid_months = {"jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"};
 
-    void validate(int) throw (invalid_argument);
+    void Validate(string) throw (invalid_argument);
 
 public:
 
-    void SetValue(int) throw (invalid_argument);
+    void SetValue(string) throw (invalid_argument);
 
-    int GetValue() const {
+    string GetValue() const {
         return value;
     }
 };
@@ -91,13 +97,13 @@ class ExpirationDate{
 private:
     string value;
 
-    void validate(int) throw (invalid_argument);
+    void Validate(string) throw (invalid_argument);
 
 public:
 
-    void SetValue(int) throw (invalid_argument);
+    void SetValue(string) throw (invalid_argument);
 
-    int GetValue() const {
+    string GetValue() const {
         return value;
     }
 };
@@ -106,14 +112,14 @@ class State{
 
 private:
     string code;
-
-    void validate(int) throw (invalid_argument);
+    vector<string> valid_states = {"AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"};
+    void Validate(string) throw (invalid_argument);
 
 public:
 
-    void SetCode(int) throw (invalid_argument);
+    void SetCode(string) throw (invalid_argument);
 
-    int GetCode() const {
+    string GetCode() const {
         return code;
     }
 };
@@ -123,13 +129,13 @@ class Identifier{
 private:
     string code;
 
-    void validate(int) throw (invalid_argument);
+    void Validate(string) throw (invalid_argument);
 
 public:
 
-    void SetCode(int) throw (invalid_argument);
+    void SetCode(string) throw (invalid_argument);
 
-    int GetCode() const {
+    string GetCode() const {
         return code;
     }
 };
@@ -139,13 +145,13 @@ class Name{
 private:
     string code;
 
-    void validate(int) throw (invalid_argument);
+    void Validate(string) throw (invalid_argument);
 
 public:
 
-    void SetCode(int) throw (invalid_argument);
+    void SetCode(string) throw (invalid_argument);
 
-    int GetCode() const {
+    string GetCode() const {
         return code;
     }
 };
@@ -155,13 +161,14 @@ class CreditCardNumber{
 private:
     string code;
 
-    void validate(int) throw (invalid_argument);
+    bool CheckLuhn(string);
+    void Validate(string) throw (invalid_argument);
 
 public:
 
-    void SetCode(int) throw (invalid_argument);
+    void SetCode(string) throw (invalid_argument);
 
-    int GetCode() const {
+    string GetCode() const {
         return code;
     }
 };
@@ -171,13 +178,13 @@ class CheckingAccount{
 private:
     string code;
 
-    void validate(int) throw (invalid_argument);
+    void Validate(string) throw (invalid_argument);
 
 public:
 
-    void SetCode(int) throw (invalid_argument);
+    void SetCode(string) throw (invalid_argument);
 
-    int GetCode() const {
+    string GetCode() const {
         return code;
     }
 };
@@ -187,13 +194,13 @@ class Password{
 private:
     string code;
 
-    void validate(int) throw (invalid_argument);
+    void Validate(string) throw (invalid_argument);
 
 public:
 
-    void SetCode(int) throw (invalid_argument);
+    void SetCode(string) throw (invalid_argument);
 
-    int GetCode() const {
+    string GetCode() const {
         return code;
     }
 };
@@ -203,13 +210,13 @@ class AccommodationType{
 private:
     string code;
 
-    void validate(int) throw (invalid_argument);
+    void Validate(string) throw (invalid_argument);
 
 public:
 
-    void SetCode(int) throw (invalid_argument);
+    void SetCode(string) throw (invalid_argument);
 
-    int GetCode() const {
+    string GetCode() const {
         return code;
     }
 };
