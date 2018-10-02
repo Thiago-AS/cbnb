@@ -26,7 +26,7 @@ void Bank::Validate(string code) throw(invalid_argument) {
     }
 }
 
-void Bank::SetCode (string code) throw(invalid_argument) {
+void Bank::SetCode(string code) throw(invalid_argument) {
     Validate(code);
     this->code = code;
 }
@@ -215,7 +215,22 @@ void Identifier::SetCode(string code) throw(invalid_argument) {
     this->code = code;
 }
 
-// TODO(myself) NOME
+// TODO(myself) NOME - CHECK IF RIGHT
+void Name::Validate(string code) throw(invalid_argument) {
+  if (code.size() > 15)
+      throw invalid_argument("Invalid argument.");
+
+  for (int i = 1; i <= code.size(); i++) {
+      if (!isalpha(code.at(i-1)) && code.at(i-1) != ' ' && code.at(i-1) != '.')
+          throw invalid_argument("Invalid argument.");
+
+      if (code.at(i) == ' ' && code.at(i-1) == ' ')
+          throw invalid_argument("Invalid argument.");
+
+      if (code.at(i) == '.' && !isalpha(code.at(i-1)))
+          throw invalid_argument("Invalid argument.");
+  }
+}
 
 bool CreditCardNumber::CheckLuhn(string card_number) {
     int num_digits = card_number.length();
@@ -251,4 +266,55 @@ void CreditCardNumber::Validate(string code) throw(invalid_argument) {
 void CreditCardNumber::SetCode(string code) throw(invalid_argument) {
     Validate(code);
     this->code = code;
+}
+
+void CheckingAccount::Validate(string code) throw(invalid_argument) {
+    if (code.size() != 6)
+        throw invalid_argument("Invalid argument.");
+
+    for (int i = 0; i < code.size(); i++) {
+        if (!isdigit(code.at(i)))
+            throw invalid_argument("Invalid argument.");
+    }
+}
+
+void CheckingAccount::SetCode(string code) throw(invalid_argument) {
+  Validate(code);
+  this->code = code;
+}
+
+// TODO(myself) Password
+void Password::Validate(string code) throw(invalid_argument) {
+  if (code.size() > 6 || code.size() < 4)
+      throw invalid_argument("Invalid argument.");
+
+  for (int i = 0; i < code.size(); i++) {
+      if (!isdigit(code.at(i)) || !isalpha(code.at(i)) || code.at(i) != '!'
+          || code.at(i) != '#' || code.at(i) != '$' || code.at(i) != '%'
+          || code.at(i) != '&')
+          throw invalid_argument("Invalid argument.");
+  }
+
+}
+
+void Password::SetCode(string) throw(invalid_argument) {
+  Validate(code);
+  this->code = code;
+}
+
+
+void AccommodationType::Validate(string code) throw(invalid_argument) {
+  bool valid_accomodation = false;
+  for (int i = 0; i < valid_accomodations.size(); i++) {
+    if (code == valid_accomodations.at(i))
+      valid_accomodation = true;
+  }
+
+  if (!valid_accomodation)
+    throw invalid_argument("Invalid argument.");
+}
+
+void AccommodationType::SetCode(string code) throw(invalid_argument) {
+  Validate(code);
+  this->code = code;
 }

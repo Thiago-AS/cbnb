@@ -188,6 +188,7 @@ class Password{
 class AccommodationType{
  private:
     string code;
+    vector<string> valid_accomodations = {"Apartamento", "Casa", "Flat"};
 
     void Validate(string) throw(invalid_argument);
 
