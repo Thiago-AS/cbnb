@@ -1,11 +1,14 @@
-/* Copyright 2018: Thiago Araujo da Siva 15/0149832*/
 #include "domain.h"
 
+/**
+ *  Validates the agency code, where it must be 5 digits long, and must contain only numeric values.
+ *  If the parameter does not pass validation, throws invalid argument exception.
+ */
 void Agency::Validate(string code) throw(invalid_argument) {
     if (code.size() != 5)
         throw invalid_argument("Invalid argument.");
 
-    for (int i = 0; i < code.size(); i++) {
+    for (unsigned int i = 0; i < code.size(); i++) {
         if (!isdigit(code.at(i)))
             throw invalid_argument("Invalid argument.");
     }
@@ -16,11 +19,15 @@ void Agency::SetCode(string code) throw(invalid_argument) {
     this->code = code;
 }
 
+/**
+ *  Validates the bank code, where it must be 3 digits long, and must contain only numeric values.
+ *  If the parameter does not pass validation, throws invalid argument exception.
+ */
 void Bank::Validate(string code) throw(invalid_argument) {
     if (code.size() != 3)
         throw invalid_argument("Invalid argument.");
 
-    for (int i = 0; i < code.size(); i++) {
+    for (unsigned int i = 0; i < code.size(); i++) {
         if (!isdigit(code.at(i)))
             throw invalid_argument("Invalid argument.");
     }
@@ -31,6 +38,10 @@ void Bank::SetCode(string code) throw(invalid_argument) {
     this->code = code;
 }
 
+/**
+ *  Validates the accommodation capacity, where it must be a number between 1 and 9.
+ *  If the parameter does not pass validation, throws invalid argument exception.
+ */
 void AccommodationCapacity::Validate(int amount) throw(invalid_argument) {
     if ((amount < 1) || (amount > 9))
         throw invalid_argument("Invalid argument.");
@@ -41,6 +52,10 @@ void AccommodationCapacity::SetAmount(int amount) throw(invalid_argument) {
     this->amount = amount;
 }
 
+/**
+ *  Validates the daily fee value, where it must be a number between 1 and 10000.
+ *  If the parameter does not pass validation, throws invalid argument exception.
+ */
 void DailyFee::Validate(int value) throw(invalid_argument) {
     if ((value < 1) || (value > 10000))
         throw invalid_argument("Invalid argument.");
@@ -51,6 +66,13 @@ void DailyFee::SetValue(int value) throw(invalid_argument) {
     this->value = value;
 }
 
+/**
+ *  Validates the date, where it must be in the usual format (DD/MMM/AAAA),
+ *  where DD, represents the day and must be in range of 1 and 31, MMM
+ *  represents the month, and it must be in the valid_months vector defined
+ *  and the AAAA represents the year, being a number between 2000 and 2099.
+ *  If the parameter does not pass validation, throws invalid argument exception.
+ */
 void Date::Validate(string value) throw(invalid_argument) {
     int slash_counter = 0, int_day, int_year;
     bool valid_month = false, is_leap_year = false;
@@ -61,7 +83,7 @@ void Date::Validate(string value) throw(invalid_argument) {
     if (value.size() != 11)
         throw invalid_argument("Invalid argument.");
 
-    for (int i = 0; i < value.size(); i++) {
+    for (unsigned int i = 0; i < value.size(); i++) {
         if (value.at(i) == '/')
             slash_counter++;
     }
@@ -80,22 +102,22 @@ void Date::Validate(string value) throw(invalid_argument) {
     if (day.size() != 2 || month.size() != 3 ||year.size() != 4)
         throw invalid_argument("Invalid argument.");
 
-    for (int i = 0; i < day.size(); i++) {
+    for (unsigned int i = 0; i < day.size(); i++) {
         if (!isdigit(day.at(i)))
             throw invalid_argument("Invalid argument.");
     }
 
-    for (int i = 0; i < month.size(); i++) {
+    for (unsigned int i = 0; i < month.size(); i++) {
         if (isdigit(month.at(i)))
             throw invalid_argument("Invalid argument.");
     }
 
-    for (int i = 0; i < year.size(); i++) {
+    for (unsigned int i = 0; i < year.size(); i++) {
         if (!isdigit(year.at(i)))
             throw invalid_argument("Invalid argument.");
     }
 
-    for (int i = 0; i < valid_months.size(); i++) {
+    for (unsigned int i = 0; i < valid_months.size(); i++) {
         if (month == valid_months.at(i))
             valid_month = true;
     }
@@ -132,6 +154,12 @@ void Date::SetValue(string value) throw(invalid_argument) {
     this->value = value;
 }
 
+/**
+ *  Validates the expiration date, where it must be in the format MM/AA. Where
+ *  MM is the month, and must be between 01 and 12, and AA is the year, and must
+ *  be between 00 and 99.
+ *  If the parameter does not pass validation, throws invalid argument exception.
+ */
 void ExpirationDate::Validate(string value) throw(invalid_argument) {
     int slash_counter = 0, int_month, int_year;
     string sub_string, month, year;
@@ -141,7 +169,7 @@ void ExpirationDate::Validate(string value) throw(invalid_argument) {
     if (value.size() != 5)
         throw invalid_argument("Invalid argument.");
 
-    for (int i = 0; i < value.size(); i++) {
+    for (unsigned int i = 0; i < value.size(); i++) {
         if (value.at(i) == '/')
             slash_counter++;
     }
@@ -159,12 +187,12 @@ void ExpirationDate::Validate(string value) throw(invalid_argument) {
     if (month.size() != 2 || year.size() != 2)
         throw invalid_argument("Invalid argument.");
 
-    for (int i = 0; i < month.size(); i++) {
+    for (unsigned int i = 0; i < month.size(); i++) {
         if (!isdigit(month.at(i)))
             throw invalid_argument("Invalid argument.");
     }
 
-    for (int i = 0; i < year.size(); i++) {
+    for (unsigned int i = 0; i < year.size(); i++) {
         if (!isdigit(year.at(i)))
             throw invalid_argument("Invalid argument.");
     }
@@ -184,12 +212,17 @@ void ExpirationDate::SetValue(string value) throw(invalid_argument) {
     this->value = value;
 }
 
+/**
+ *  Validates the state code, where it must be a code with 2 characters and must
+ *  be in the valid_states vector defined.
+ *  If the parameter does not pass validation, throws invalid argument exception.
+ */
 void State::Validate(string code) throw(invalid_argument) {
     bool valid_state = false;
     if (code.size() != 2)
         throw invalid_argument("Invalid argument.");
 
-    for (int i = 0; i < valid_states.size(); i++) {
+    for (unsigned int i = 0; i < valid_states.size(); i++) {
         if (code == valid_states.at(i))
             valid_state = true;
     }
@@ -203,11 +236,16 @@ void State::SetCode(string code) throw(invalid_argument) {
     this->code = code;
 }
 
+/**
+ *  Validates the Identifier code, where it must be a code with 5 characters,
+ *  all being alpha and lower case.
+ *  If the parameter does not pass validation, throws invalid argument exception.
+ */
 void Identifier::Validate(string code) throw(invalid_argument) {
     if (code.size() != 5)
         throw invalid_argument("Invalid argument.");
 
-    for (int i = 0; i < code.size(); i++) {
+    for (unsigned int i = 0; i < code.size(); i++) {
         if (!islower(code.at(i)) || !isalpha(code.at(i)))
             throw invalid_argument("Invalid argument.");
     }
@@ -218,12 +256,18 @@ void Identifier::SetCode(string code) throw(invalid_argument) {
     this->code = code;
 }
 
+/**
+ *  Validates the Name, where it must be a code with max 15 characters,
+ *  all being alpha or space and dot. Cant have two spaces in a row and all
+ *  dots must be preceded by a letter.
+ *  If the parameter does not pass validation, throws invalid argument exception.
+ */
 void Name::Validate(string code) throw(invalid_argument) {
     bool char_is_letter = false;
     if (code.size() > 15)
       throw invalid_argument("Invalid argument.");
 
-    for (int i = 0; i < code.size(); i++){
+    for (unsigned int i = 0; i < code.size(); i++){
         if (!isalpha(code.at(i)) && code.at(i) != ' ' && code.at(i) != '.')
           throw invalid_argument("Invalid argument.");
 
@@ -234,7 +278,7 @@ void Name::Validate(string code) throw(invalid_argument) {
     if(!char_is_letter)
         throw invalid_argument("Invalid argument.");
 
-    for (int i = 1; i < code.size(); i++) {
+    for (unsigned int i = 1; i < code.size(); i++) {
         if (code.at(i-1) == ' ' && code.at(i) == ' ')
             throw invalid_argument("Invalid argument.");
 
@@ -266,11 +310,16 @@ bool CreditCardNumber::CheckLuhn(string card_number) {
     return (num_sum % 10 == 0);
 }
 
+/**
+ *  Validates the Credit Card Number, where it must be a code with 16 digits,
+ *  all being numeric. The number must pass the Luhn algorithm.
+ *  If the parameter does not pass validation, throws invalid argument exception.
+ */
 void CreditCardNumber::Validate(string code) throw(invalid_argument) {
     if (code.size() != 16)
         throw invalid_argument("Invalid argument.");
 
-    for (int i = 0; i < code.size(); i++) {
+    for (unsigned int i = 0; i < code.size(); i++) {
         if (!isdigit(code.at(i)))
             throw invalid_argument("Invalid argument.");
     }
@@ -284,11 +333,16 @@ void CreditCardNumber::SetCode(string code) throw(invalid_argument) {
     this->code = code;
 }
 
+/**
+ *  Validates the Checking Account Number, where it must be a code with 6 digits,
+ *  all being numeric.
+ *  If the parameter does not pass validation, throws invalid argument exception.
+ */
 void CheckingAccountNumber::Validate(string code) throw(invalid_argument) {
     if (code.size() != 6)
         throw invalid_argument("Invalid argument.");
 
-    for (int i = 0; i < code.size(); i++) {
+    for (unsigned int i = 0; i < code.size(); i++) {
         if (!isdigit(code.at(i)))
             throw invalid_argument("Invalid argument.");
     }
@@ -299,6 +353,13 @@ void CheckingAccountNumber::SetCode(string code) throw(invalid_argument) {
     this->code = code;
 }
 
+/**
+ *  Validates the Password, where it must be a code with max 8 characters,
+ *  where the character can be a symbol (! # $% &), A letter (A - Z to - z) or
+ *  a digit (0 to 9). There is at least 1 uppercase, 1 lowercase, 1 digit,
+ *  and 1 symbol.
+ *  If the parameter does not pass validation, throws invalid argument exception.
+ */
 void Password::Validate(string code) throw(invalid_argument) {
     bool char_is_upper = false, char_is_lower = false, char_is_digit = false, char_is_symbol = false;
     int char_count[256] = {0};
@@ -306,7 +367,7 @@ void Password::Validate(string code) throw(invalid_argument) {
     if (code.size() > 8 || code.size() < 4)
         throw invalid_argument("Invalid argument.");
 
-    for (int i = 0; i < code.size(); i++) {
+    for (unsigned int i = 0; i < code.size(); i++) {
         if (!isdigit(code.at(i)) && !isalpha(code.at(i)) && code.at(i) != '!'
             && code.at(i) != '#' && code.at(i) != '$' && code.at(i) != '%'
             && code.at(i) != '&')
@@ -321,7 +382,7 @@ void Password::Validate(string code) throw(invalid_argument) {
         if (code.at(i) == '!' || code.at(i) == '#' || code.at(i) == '$' || code.at(i) == '%' || code.at(i) == '&')
             char_is_symbol = true;
 
-        char_count[code.at(i)]++;
+        char_count[int(code.at(i))]++;
     }
 
     if (!(char_is_upper & char_is_lower & char_is_symbol & char_is_digit))
@@ -338,10 +399,14 @@ void Password::SetCode(string code) throw(invalid_argument) {
     this->code = code;
 }
 
-
+/**
+ *  Validates the Accommodation Type, the type must be in the valid_types vector
+ *  defined.
+ *  If the parameter does not pass validation, throws invalid argument exception.
+ */
 void AccommodationType::Validate(string code) throw(invalid_argument) {
     bool valid_accomodation = false;
-    for (int i = 0; i < valid_accomodations.size(); i++) {
+    for (unsigned int i = 0; i < valid_accomodations.size(); i++) {
     if (code == valid_accomodations.at(i))
       valid_accomodation = true;
     }

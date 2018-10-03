@@ -1,7 +1,6 @@
 #include "tests_domain.h"
 
 void UtAgency::SetUp() {
-    cout << "\n-----------------------------------------------------------------------------------" << endl;
     cout << "Starting agency unit test" << endl;
     agency = nullptr;
     agency = new Agency();
@@ -31,7 +30,7 @@ void UtAgency::TestSuccessCase() {
 }
 
 void UtAgency::TestFailureCase() {
-    for(int i = 0; i < invalid_values.size(); i++){
+    for(unsigned int i = 0; i < invalid_values.size(); i++){
         try{
             cout << "\nSetting invalid value " << invalid_values.at(i) << " to object attribute..." << endl;
             agency->SetCode(invalid_values.at(i));
@@ -44,7 +43,7 @@ void UtAgency::TestFailureCase() {
 
 }
 
-void UtAgency::Run(){
+void UtAgency::Run() {
     SetUp();
     TestSuccessCase();
     TestFailureCase();
@@ -82,7 +81,7 @@ void UtBank::TestSuccessCase() {
 }
 
 void UtBank::TestFailureCase() {
-    for(int i = 0; i < invalid_values.size(); i++){
+    for(unsigned int i = 0; i < invalid_values.size(); i++){
         try{
             cout << "\nSetting invalid value " << invalid_values.at(i) << " to object attribute..." << endl;
             bank->SetCode(invalid_values.at(i));
@@ -94,7 +93,7 @@ void UtBank::TestFailureCase() {
     }
 }
 
-void UtBank::Run(){
+void UtBank::Run() {
     SetUp();
     TestSuccessCase();
     TestFailureCase();
@@ -132,7 +131,7 @@ void UtAccommodationCapacity::TestSuccessCase() {
 }
 
 void UtAccommodationCapacity::TestFailureCase() {
-    for(int i = 0; i < invalid_values.size(); i++){
+    for(unsigned int i = 0; i < invalid_values.size(); i++){
         try{
             cout << "\nSetting invalid value " << invalid_values.at(i) << " to object attribute..." << endl;
             accommodation_capacity->SetAmount(invalid_values.at(i));
@@ -144,7 +143,7 @@ void UtAccommodationCapacity::TestFailureCase() {
     }
 }
 
-void UtAccommodationCapacity::Run(){
+void UtAccommodationCapacity::Run() {
     SetUp();
     TestSuccessCase();
     TestFailureCase();
@@ -182,7 +181,7 @@ void UtDailyFee::TestSuccessCase() {
 }
 
 void UtDailyFee::TestFailureCase() {
-    for(int i = 0; i < invalid_values.size(); i++){
+    for(unsigned int i = 0; i < invalid_values.size(); i++){
         try{
             cout << "\nSetting invalid value " << invalid_values.at(i) << " to object attribute..." << endl;
             daily_fee->SetValue(invalid_values.at(i));
@@ -194,7 +193,7 @@ void UtDailyFee::TestFailureCase() {
     }
 }
 
-void UtDailyFee::Run(){
+void UtDailyFee::Run() {
     SetUp();
     TestSuccessCase();
     TestFailureCase();
@@ -232,7 +231,7 @@ void UtDate::TestSuccessCase() {
 }
 
 void UtDate::TestFailureCase() {
-    for(int i = 0; i < invalid_values.size(); i++){
+    for(unsigned int i = 0; i < invalid_values.size(); i++){
         try{
             cout << "\nSetting invalid value " << invalid_values.at(i) << " to object attribute..." << endl;
             date->SetValue(invalid_values.at(i));
@@ -244,7 +243,7 @@ void UtDate::TestFailureCase() {
     }
 }
 
-void UtDate::Run(){
+void UtDate::Run() {
     SetUp();
     TestSuccessCase();
     TestFailureCase();
@@ -282,7 +281,7 @@ void UtExpirationDate::TestSuccessCase() {
 }
 
 void UtExpirationDate::TestFailureCase() {
-    for(int i = 0; i < invalid_values.size(); i++){
+    for(unsigned int i = 0; i < invalid_values.size(); i++){
         try{
             cout << "\nSetting invalid value " << invalid_values.at(i) << " to object attribute..." << endl;
             expiration_date->SetValue(invalid_values.at(i));
@@ -294,7 +293,7 @@ void UtExpirationDate::TestFailureCase() {
     }
 }
 
-void UtExpirationDate::Run(){
+void UtExpirationDate::Run() {
     SetUp();
     TestSuccessCase();
     TestFailureCase();
@@ -332,7 +331,7 @@ void UtState::TestSuccessCase() {
 }
 
 void UtState::TestFailureCase() {
-    for(int i = 0; i < invalid_values.size(); i++){
+    for(unsigned int i = 0; i < invalid_values.size(); i++){
         try{
             cout << "\nSetting invalid value " << invalid_values.at(i) << " to object attribute..." << endl;
             state->SetCode(invalid_values.at(i));
@@ -344,7 +343,7 @@ void UtState::TestFailureCase() {
     }
 }
 
-void UtState::Run(){
+void UtState::Run() {
     SetUp();
     TestSuccessCase();
     TestFailureCase();
@@ -382,7 +381,7 @@ void UtIdentifier::TestSuccessCase() {
 }
 
 void UtIdentifier::TestFailureCase() {
-    for(int i = 0; i < invalid_values.size(); i++){
+    for(unsigned int i = 0; i < invalid_values.size(); i++){
         try{
             cout << "\nSetting invalid value " << invalid_values.at(i) << " to object attribute..." << endl;
             identifier->SetCode(invalid_values.at(i));
@@ -394,7 +393,7 @@ void UtIdentifier::TestFailureCase() {
     }
 }
 
-void UtIdentifier::Run(){
+void UtIdentifier::Run() {
     SetUp();
     TestSuccessCase();
     TestFailureCase();
@@ -432,7 +431,7 @@ void UtName::TestSuccessCase() {
 }
 
 void UtName::TestFailureCase() {
-    for(int i = 0; i < invalid_values.size(); i++){
+    for(unsigned int i = 0; i < invalid_values.size(); i++){
         try{
             cout << "\nSetting invalid value " << invalid_values.at(i) << " to object attribute..." << endl;
             name->SetCode(invalid_values.at(i));
@@ -444,7 +443,7 @@ void UtName::TestFailureCase() {
     }
 }
 
-void UtName::Run(){
+void UtName::Run() {
     SetUp();
     TestSuccessCase();
     TestFailureCase();
@@ -482,7 +481,7 @@ void UtCreditCardNumber::TestSuccessCase() {
 }
 
 void UtCreditCardNumber::TestFailureCase() {
-    for(int i = 0; i < invalid_values.size(); i++){
+    for(unsigned int i = 0; i < invalid_values.size(); i++){
         try{
             cout << "\nSetting invalid value " << invalid_values.at(i) << " to object attribute..." << endl;
             credit_card_number->SetCode(invalid_values.at(i));
@@ -494,7 +493,7 @@ void UtCreditCardNumber::TestFailureCase() {
     }
 }
 
-void UtCreditCardNumber::Run(){
+void UtCreditCardNumber::Run() {
     SetUp();
     TestSuccessCase();
     TestFailureCase();
@@ -532,7 +531,7 @@ void UtCheckingAccount::TestSuccessCase() {
 }
 
 void UtCheckingAccount::TestFailureCase() {
-    for(int i = 0; i < invalid_values.size(); i++){
+    for(unsigned int i = 0; i < invalid_values.size(); i++){
         try{
             cout << "\nSetting invalid value " << invalid_values.at(i) << " to object attribute..." << endl;
             checking_account->SetCode(invalid_values.at(i));
@@ -544,7 +543,7 @@ void UtCheckingAccount::TestFailureCase() {
     }
 }
 
-void UtCheckingAccount::Run(){
+void UtCheckingAccount::Run() {
     SetUp();
     TestSuccessCase();
     TestFailureCase();
@@ -582,7 +581,7 @@ void UtPassword::TestSuccessCase() {
 }
 
 void UtPassword::TestFailureCase() {
-    for(int i = 0; i < invalid_values.size(); i++){
+    for(unsigned int i = 0; i < invalid_values.size(); i++){
         try{
             cout << "\nSetting invalid value " << invalid_values.at(i) << " to object attribute..." << endl;
             password->SetCode(invalid_values.at(i));
@@ -594,7 +593,7 @@ void UtPassword::TestFailureCase() {
     }
 }
 
-void UtPassword::Run(){
+void UtPassword::Run() {
     SetUp();
     TestSuccessCase();
     TestFailureCase();
@@ -632,7 +631,7 @@ void UtAccommodationType::TestSuccessCase() {
 }
 
 void UtAccommodationType::TestFailureCase() {
-    for(int i = 0; i < invalid_values.size(); i++){
+    for(unsigned int i = 0; i < invalid_values.size(); i++){
         try{
             cout << "\nSetting invalid value " << invalid_values.at(i) << " to object attribute..." << endl;
             accommodation_type->SetCode(invalid_values.at(i));
@@ -644,9 +643,47 @@ void UtAccommodationType::TestFailureCase() {
     }
 }
 
-void UtAccommodationType::Run(){
+void UtAccommodationType::Run() {
     SetUp();
     TestSuccessCase();
     TestFailureCase();
     TearDown();
+}
+
+void TestMainFrame::RunTests() {
+    test_agency = new UtAgency();
+    test_bank = new UtBank();
+    test_accommodation_capacity = new UtAccommodationCapacity();
+    test_daily_fee = new UtDailyFee();
+    test_date = new UtDate();
+    test_expiration_date = new UtExpirationDate();
+    test_state = new UtState();
+    test_identifier = new UtIdentifier();
+    test_name = new UtName();
+    test_credit_card = new UtCreditCardNumber();
+    test_checking_account = new UtCheckingAccount();
+    test_password = new UtPassword();
+    test_accommodation_type = new UtAccommodationType();
+
+    cout << "-----------------------------------------------------------------------------------" << endl;
+    cout << "-" << "                               DOMAIN TESTS                                      " << "-" << endl;
+    cout << "-----------------------------------------------------------------------------------" << endl;
+
+    test_agency->Run();
+    test_bank->Run();
+    test_accommodation_capacity->Run();
+    test_daily_fee->Run();
+    test_date->Run();
+    test_expiration_date->Run();
+    test_state->Run();
+    test_identifier->Run();
+    test_name->Run();
+    test_credit_card->Run();
+    test_checking_account->Run();
+    test_password->Run();
+    test_accommodation_type->Run();
+
+    cout << "-----------------------------------------------------------------------------------" << endl;
+    cout << "-" << "                           END DOMAIN TESTS                                      " << "-" << endl;
+    cout << "-----------------------------------------------------------------------------------" << endl;
 }
