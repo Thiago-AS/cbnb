@@ -4,17 +4,17 @@
 #include "entity.h"
 #include "domain.h"
 
-class AuthenticationUserInterface{
+class UserAuthenticationInterface{
 public:
     virtual bool Authenticate() throw(runtime_error) = 0;
-    virtual void SetController(AuthenticationServiceInterface *) = 0;
-    virtual ~AuthenticationUserInterface(){}
+    virtual void SetController(ServiceAuthenticationInterface *) = 0;
+    virtual ~UserAuthenticationInterface(){}
 };
 
-class AuthenticationServiceInterface {
+class ServiceAuthenticationInterface {
 public:
     virtual bool Authenticate(const Identifier&, const Password&) throw(runtime_error)= 0;
-    virtual ~ILNAutenticacao(){}
+    virtual ~ServiceAuthenticationInterface(){}
 };
 
 #endif // INTERFACES_H_INCLUDED
