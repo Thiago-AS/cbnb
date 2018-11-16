@@ -3,16 +3,16 @@
 
 #include "interfaces.h"
 
-class UserAuthenticationController:public UserAuthenticationInterface{
-private:
-    ServiceAuthenticationController *;
-public:
-    void Authenticate() throw(runtime_error);
-    void SetController(ServiceAuthenticationInterface *);
-};
-
 class ServiceAuthenticationController:public ServiceAuthenticationInterface{
 public:
-    bool Authenticate(const Identifier&, const Password&);
+    bool Authenticate(const Identifier&, const Password&) throw(runtime_error);
+};
+
+class UserAuthenticationController:public UserAuthenticationInterface{
+private:
+    ServiceAuthenticationInterface * sa_controller;
+public:
+    bool Authenticate() throw(runtime_error);
+    void SetController(ServiceAuthenticationInterface *);
 };
 #endif // AUTHENTICATION_H_INCLUDED
