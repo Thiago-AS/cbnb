@@ -13,7 +13,7 @@ bool UserRegistrationController::Register() throw(runtime_error){
 
     while(!valid_data){
         try{
-            cout << "Type your name: "
+            cout << "Type your name: ";
             getline(cin, user_entry);
             user_name.SetCode(user_entry);
             cout << "Type your identifier: ";

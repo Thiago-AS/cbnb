@@ -2,10 +2,14 @@
 #include "domain.h"
 #include "tests_domain.h"
 #include "entity.h"
+#include "db.h"
 
 int main() {
-    TestMainFrame test_domain;
-    test_domain.RunTests();
+
+    sqlite3 *db;
+    int rc = sqlite3_open("test.db", &db);
+      if( rc != SQLITE_OK )
+        throw DBError("Erro na conexao ao banco de dados");
 
     return 0;
 }
