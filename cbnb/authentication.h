@@ -3,6 +3,7 @@
 
 #include "interfaces.h"
 
+//TODO
 class ServiceAuthenticationController:public ServiceAuthenticationInterface{
 public:
     bool Authenticate(const Identifier&, const Password&) throw(runtime_error);
@@ -15,4 +16,5 @@ public:
     bool Authenticate() throw(runtime_error);
     void SetController(ServiceAuthenticationInterface *);
 };
+
 #endif // AUTHENTICATION_H_INCLUDED
