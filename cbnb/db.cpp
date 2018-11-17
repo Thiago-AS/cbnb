@@ -23,7 +23,8 @@ void SQLCommand::disconnect() throw (DBError) {
 }
 
 void SQLCommand::execute() throw (DBError) {
-        string error("Data base execution error: ");
+        string error("Data base execution error (");
+        error = error + command + ") : ";
         connect();
         rc = sqlite3_exec(db, command.c_str(), callback, 0, &err_message);
         if(rc != SQLITE_OK){
@@ -50,5 +51,20 @@ InsertNewUser::InsertNewUser(User user) {
         command += "'" + user.GetName().GetCode() + "', ";
         command += "'" + user.GetIdentifier().GetCode() + "', ";
         command += "'" + user.GetPassword().GetCode() + "')";
-        cout << endl << command << endl;
+}
+
+GetUserPassword::GetUserPassword(Identifier user_identifier) {
+        command = "SELECT Password FROM User WHERE Identifier = '";
+        command += user_identifier.GetCode();
+        command += "'";
+}
+
+string GetUserPassword::GetPassword() throw(DBError){
+    pair<string, string> column;
+    if(result_list.empty())
+        throw DBError("No match found");
+
+    column = result_list.back();
+    result_list.pop_back();
+    return column.second;
 }

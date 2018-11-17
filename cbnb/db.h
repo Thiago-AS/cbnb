@@ -42,4 +42,10 @@ public:
         InsertNewUser(User);
 };
 
+class GetUserPassword:public SQLCommand {
+public:
+    GetUserPassword(Identifier);
+    string GetPassword() throw (DBError);
+};
+
 #endif

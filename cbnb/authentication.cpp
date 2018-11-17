@@ -1,4 +1,5 @@
 #include "authentication.h"
+#include "db.h"
 
 void UserAuthenticationController::SetController(ServiceAuthenticationInterface *sa_controller){
     this->sa_controller = sa_controller;
@@ -29,3 +30,28 @@ bool UserAuthenticationController::Authenticate() throw(runtime_error){
 
     return valid_user;
 }
+
+bool ServiceAuthenticationController::Authenticate(const Identifier &user_identifier, const Password &user_password) throw(runtime_error){
+    string correct_password;
+    GetUserPassword sql_command(user_identifier);
+
+    try {
+        sql_command.execute();
+    }
+    catch (DBError exp) {
+        cout << exp.what();
+        return false;
+    }
+
+    try {
+        correct_password = sql_command.GetPassword();
+        if(user_password.GetCode() == correct_password)
+            return true;
+        else
+            return false;
+    } catch (DBError exp) {
+        cout << exp.what();
+        return false;
+    }
+}
+

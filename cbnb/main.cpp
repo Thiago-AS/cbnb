@@ -3,14 +3,15 @@
 #include "tests_domain.h"
 #include "entity.h"
 #include "registration.h"
+#include "authentication.h"
 
 int main() {
-    UserRegistrationInterface *test = new UserRegistrationController();
-    ServiceRegistrationInterface *service_test = new ServiceRegistrationController();
+    UserAuthenticationInterface *test = new UserAuthenticationController();
+    ServiceAuthenticationInterface *service_test = new ServiceAuthenticationController();
 
     test->SetController(service_test);
 
-    cout << test->Register();
+    cout << test->Authenticate();
 
 
     return 0;
