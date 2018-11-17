@@ -32,9 +32,14 @@ protected:
         string command;
 public:
         SQLCommand() {
-             db_name = "test";
+             db_name = "test.db";
         }
         void execute() throw (DBError);
+};
+
+class InsertNewUser:public SQLCommand {
+public:
+        InsertNewUser(User);
 };
 
 #endif

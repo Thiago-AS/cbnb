@@ -13,22 +13,25 @@ string DBError::what() {
 void SQLCommand::connect() throw (DBError) {
       rc = sqlite3_open(db_name.c_str(), &db);
       if( rc != SQLITE_OK )
-        throw DBError("Erro na conexao ao banco de dados");
+        throw DBError("Data base connection error");
 }
 
 void SQLCommand::disconnect() throw (DBError) {
       rc =  sqlite3_close(db);
       if( rc != SQLITE_OK )
-        throw DBError("Erro na desconexao ao banco de dados");
+        throw DBError("Data base disconnection error");
 }
 
 void SQLCommand::execute() throw (DBError) {
+        string error("Data base execution error: ");
         connect();
         rc = sqlite3_exec(db, command.c_str(), callback, 0, &err_message);
         if(rc != SQLITE_OK){
-                if (err_message)
-                        sqlite3_free(err_message);
-                throw DBError("Erro na execucao do comando SQL");
+            if (err_message){
+                error += err_message;
+                sqlite3_free(err_message);
+            }
+            throw DBError(error);
         }
         disconnect();
 }
@@ -40,4 +43,12 @@ int SQLCommand::callback(void *NotUsed, int argc, char **col_value, char **col_n
         result_list.push_back(pair_value);
       }
       return 0;
+}
+
+InsertNewUser::InsertNewUser(User user) {
+        command = "INSERT INTO User VALUES (";
+        command += "'" + user.GetName().GetCode() + "', ";
+        command += "'" + user.GetIdentifier().GetCode() + "', ";
+        command += "'" + user.GetPassword().GetCode() + "')";
+        cout << endl << command << endl;
 }

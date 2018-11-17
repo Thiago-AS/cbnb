@@ -1,4 +1,5 @@
 #include "registration.h"
+#include "db.h"
 
 void UserRegistrationController::SetController(ServiceRegistrationInterface *sr_controller){
     this->sr_controller = sr_controller;
@@ -29,7 +30,21 @@ bool UserRegistrationController::Register() throw(runtime_error){
     }
     valid_registration = sr_controller->Register(user_name, user_identifier, user_password);
     if(!valid_registration)
-        cout << endl << "Authentication failed" << endl;
+        cout << endl << "Registration failed" << endl;
 
     return valid_registration;
+}
+
+bool ServiceRegistrationController::Register(const Name &user_name, const Identifier &user_identifier, const Password &user_password) throw(runtime_error){
+    User new_user(user_name, user_identifier, user_password);
+    InsertNewUser sql_command(new_user);
+
+    try {
+        sql_command.execute();
+        return true;
+    }
+    catch (DBError exp) {
+        cout << exp.what();
+        return false;
+    }
 }

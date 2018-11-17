@@ -2,14 +2,16 @@
 #include "domain.h"
 #include "tests_domain.h"
 #include "entity.h"
-#include "db.h"
+#include "registration.h"
 
 int main() {
+    UserRegistrationInterface *test = new UserRegistrationController();
+    ServiceRegistrationInterface *service_test = new ServiceRegistrationController();
 
-    sqlite3 *db;
-    int rc = sqlite3_open("test.db", &db);
-      if( rc != SQLITE_OK )
-        throw DBError("Erro na conexao ao banco de dados");
+    test->SetController(service_test);
+
+    cout << test->Register();
+
 
     return 0;
 }

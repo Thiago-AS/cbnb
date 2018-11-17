@@ -19,7 +19,7 @@ class User {
 
  public:
     User(){}
-    User(Name, Identifier, Password);
+    User(Name name, Identifier identifier, Password password):name(name), identifier(identifier), password(password){};
     /** @brief Set the domain name to the class user.
      *  @param  name Class name.
      */

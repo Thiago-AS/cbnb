@@ -6,7 +6,7 @@
 // TODO
 class ServiceRegistrationController:public ServiceRegistrationInterface{
 public:
-    bool RegisterUser(const Name&, const Identifier&, const Password&) throw(runtime_error);
+    bool Register(const Name&, const Identifier&, const Password&) throw(runtime_error);
 };
 
 class UserRegistrationController:public UserRegistrationInterface{
