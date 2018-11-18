@@ -6,12 +6,12 @@
 #include "authentication.h"
 
 int main() {
-    UserAuthenticationInterface *test = new UserAuthenticationController();
-    ServiceAuthenticationInterface *service_test = new ServiceAuthenticationController();
+    UserRegistrationInterface *test = new UserRegistrationController();
+    ServiceRegistrationInterface *service_test = new ServiceRegistrationController();
 
     test->SetController(service_test);
 
-    cout << test->Authenticate();
+    cout << test->Register();
 
 
     return 0;

@@ -6,7 +6,9 @@
 
 class ServiceRegistrationInterface{
 public:
-    virtual bool Register(const Name&, const Identifier&, const Password&) throw(runtime_error) = 0;
+    virtual bool RegisterUser(const Name&, const Identifier&, const Password&) throw(runtime_error) = 0;
+    virtual bool RegisterCreditCard(const CreditCardNumber&, const ExpirationDate&, const Identifier &) throw(runtime_error) = 0;
+    virtual bool RegisterCheckingAccount(const CheckingAccountNumber&, const Agency&, const Bank&, const Identifier &) throw(runtime_error) = 0;
     virtual ~ServiceRegistrationInterface(){}
 };
 

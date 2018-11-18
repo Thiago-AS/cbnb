@@ -79,7 +79,7 @@ class Accommodation {
 
  public:
     Accommodation(){}
-    Accommodation(Identifier, AccommodationType, AccommodationCapacity, Date, Date, Name, State, DailyFee);
+    Accommodation(Identifier identifier, AccommodationType type, AccommodationCapacity capacity, Date initial_date, Date end_date, Name city, State state, DailyFee daily_fee);
     /** @brief Set the domain identifier to the class user.
      *  @param  identifier Class identifier.
      */
@@ -187,7 +187,8 @@ class CreditCard {
 
  public:
     CreditCard(){}
-    CreditCard(CreditCardNumber, ExpirationDate);
+    CreditCard(CreditCardNumber number, ExpirationDate expiration_date):
+    number(number), expiration_date(expiration_date){};
     /** @brief Set the domain CreditCardNumber to the class user.
      *  @param  number Class CreditCardNumber.
      */

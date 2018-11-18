@@ -37,8 +37,7 @@ bool ServiceAuthenticationController::Authenticate(const Identifier &user_identi
 
     try {
         sql_command.execute();
-    }
-    catch (DBError exp) {
+    } catch (DBError exp) {
         cout << exp.what();
         return false;
     }

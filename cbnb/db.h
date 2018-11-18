@@ -48,4 +48,10 @@ public:
     string GetPassword() throw (DBError);
 };
 
+class InsertNewCreditCard:public SQLCommand {
+public:
+    InsertNewCreditCard(Identifier, CreditCard);
+};
+
+
 #endif

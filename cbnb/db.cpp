@@ -68,3 +68,10 @@ string GetUserPassword::GetPassword() throw(DBError){
     result_list.pop_back();
     return column.second;
 }
+
+InsertNewCreditCard::InsertNewCreditCard(Identifier user_identifier, CreditCard credit_card){
+        command = "INSERT INTO CreditCard VALUES (";
+        command += "'" + credit_card.GetNumber().GetCode() + "', ";
+        command += "'" + credit_card.GetExpirationDate().GetValue() + "', ";
+        command += "'" + user_identifier.GetCode() + "')";
+}
