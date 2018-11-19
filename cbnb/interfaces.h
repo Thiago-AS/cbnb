@@ -9,12 +9,14 @@ public:
     virtual bool RegisterUser(const Name&, const Identifier&, const Password&) throw(runtime_error) = 0;
     virtual bool RegisterCreditCard(const CreditCardNumber&, const ExpirationDate&, const Identifier &) throw(runtime_error) = 0;
     virtual bool RegisterCheckingAccount(const CheckingAccountNumber&, const Agency&, const Bank&, const Identifier &) throw(runtime_error) = 0;
+    virtual bool RegisterAccommodation(const Accommodation&, const Identifier&) throw(runtime_error) = 0;
     virtual ~ServiceRegistrationInterface(){}
 };
 
 class UserRegistrationInterface{
 public:
-    virtual bool Register() throw(runtime_error) = 0;
+    virtual bool RegisterUser() throw(runtime_error) = 0;
+    virtual bool RegisterAccommodation() throw(runtime_error) = 0;
     virtual void SetController(ServiceRegistrationInterface *) = 0;
     virtual ~UserRegistrationInterface(){}
 };

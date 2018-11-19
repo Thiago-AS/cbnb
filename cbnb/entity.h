@@ -18,7 +18,7 @@ class User {
     Password password;
 
  public:
-    User(){}
+    User(){};
     User(Name name, Identifier identifier, Password password):name(name), identifier(identifier), password(password){};
     /** @brief Set the domain name to the class user.
      *  @param  name Class name.
@@ -66,10 +66,6 @@ class Accommodation {
     AccommodationType type;
     /** Accommodation capacity. */
     AccommodationCapacity capacity;
-    /** Initial date to use the accommodation. */
-    Date initial_date;
-    /** End date to use the accommodation. */
-    Date end_date;
     /** City where its located. */
     Name city;
     /** State where its located. */
@@ -79,7 +75,8 @@ class Accommodation {
 
  public:
     Accommodation(){}
-    Accommodation(Identifier identifier, AccommodationType type, AccommodationCapacity capacity, Date initial_date, Date end_date, Name city, State state, DailyFee daily_fee);
+    Accommodation(Identifier identifier, AccommodationType type, AccommodationCapacity capacity, Name city, State state, DailyFee daily_fee):
+    identifier(identifier), type(type), capacity(capacity), city(city), state(state), daily_fee(daily_fee){};
     /** @brief Set the domain identifier to the class user.
      *  @param  identifier Class identifier.
      */
@@ -115,30 +112,6 @@ class Accommodation {
      */
     AccommodationCapacity GetCapacity() const {
         return capacity;
-    }
-    /** @brief Set the domain Date to the class user.
-     *  @param  initial_date Class Date.
-     */
-    void SetInitialDate(const Date &initial_date) {
-        this->initial_date = initial_date;
-    }
-    /** @brief Returns the domain Date from the class so it can be changed.
-     *  @return  Date Returns the domain Date from the class.
-     */
-    Date GetInitialDate() const {
-        return initial_date;
-    }
-    /** @brief Set the domain Date to the class user.
-     *  @param  end_date Class Date.
-     */
-    void SetEndDate(const Date &end_date) {
-        this->end_date = end_date;
-    }
-    /** @brief Returns the domain Date from the class so it can be changed.
-     *  @return  Date Returns the domain Date from the class.
-     */
-    Date GetEndDate() const {
-        return end_date;
     }
     /** @brief Set the domain Name to the class user.
      *  @param  city Class Name.
@@ -186,7 +159,7 @@ class CreditCard {
     ExpirationDate expiration_date;
 
  public:
-    CreditCard(){}
+    CreditCard(){};
     CreditCard(CreditCardNumber number, ExpirationDate expiration_date):
     number(number), expiration_date(expiration_date){};
     /** @brief Set the domain CreditCardNumber to the class user.

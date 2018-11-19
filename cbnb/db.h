@@ -58,5 +58,10 @@ public:
     InsertNewCheckingAccount(Identifier, CheckingAccount);
 };
 
+class InsertNewAccommodation:public SQLCommand {
+public:
+    InsertNewAccommodation(Identifier, Accommodation);
+};
+
 
 #endif

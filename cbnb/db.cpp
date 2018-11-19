@@ -83,3 +83,14 @@ InsertNewCheckingAccount::InsertNewCheckingAccount(Identifier user_identifier, C
         command += "'" + checking_account.GetBank().GetCode() + "', ";
         command += "'" + user_identifier.GetCode() + "')";
 }
+
+InsertNewAccommodation::InsertNewAccommodation(Identifier user_identifier, Accommodation accommodation) {
+        command = "INSERT INTO Accommodation VALUES (";
+        command += "'" + accommodation.GetIdentifier().GetCode() + "', ";
+        command += "'" + accommodation.GetType().GetCode() + "', ";
+        command += accommodation.GetCapacity().GetAmount() + ", ";
+        command += "'" + accommodation.GetCity().GetCode() + "', ";
+        command += "'" + accommodation.GetState().GetCode() + "', ";
+        command += accommodation.GetDailyFee().GetValue() + ", ";
+        command += "'" + user_identifier.GetCode() + "')";
+}

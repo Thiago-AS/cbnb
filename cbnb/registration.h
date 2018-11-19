@@ -9,13 +9,15 @@ public:
     bool RegisterUser(const Name&, const Identifier&, const Password&) throw(runtime_error);
     bool RegisterCreditCard(const CreditCardNumber&, const ExpirationDate&, const Identifier &) throw(runtime_error);
     bool RegisterCheckingAccount(const CheckingAccountNumber&, const Agency&, const Bank&, const Identifier &) throw(runtime_error);
+    bool RegisterAccommodation(const Accommodation&, const Identifier&) throw(runtime_error);
 };
 
 class UserRegistrationController:public UserRegistrationInterface{
 private:
     ServiceRegistrationInterface * sr_controller;
 public:
-    bool Register() throw(runtime_error);
+    bool RegisterUser() throw(runtime_error);
+    bool RegisterAccommodation() throw(runtime_error);
     void SetController(ServiceRegistrationInterface *);
 };
 

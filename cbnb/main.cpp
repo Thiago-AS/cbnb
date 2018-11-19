@@ -11,7 +11,7 @@ int main() {
 
     test->SetController(service_test);
 
-    cout << test->Register();
+    cout << test->RegisterUser();
 
 
     return 0;

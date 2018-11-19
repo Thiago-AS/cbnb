@@ -5,7 +5,7 @@ void UserRegistrationController::SetController(ServiceRegistrationInterface *sr_
     this->sr_controller = sr_controller;
 }
 
-bool UserRegistrationController::Register() throw(runtime_error){
+bool UserRegistrationController::RegisterUser() throw(runtime_error){
     Name user_name;
     Identifier user_identifier;
     Password user_password;
@@ -87,6 +87,38 @@ bool UserRegistrationController::Register() throw(runtime_error){
     return valid_registration;
 }
 
+bool UserRegistrationController::RegisterAccommodation() throw(runtime_error){
+    bool valid_registration, valid_data = false;
+    string user_entry;
+
+    while(!valid_data){
+        try{
+            cout << "Type the accommodation identifier: ";
+            getline(cin, user_entry);
+            user_name.SetCode(user_entry);
+            cout << "Type the accommodation type: ";
+            getline(cin, user_entry);
+            user_identifier.SetCode(user_entry);
+            cout << "Type the accommodation capacity: ";
+            getline(cin, user_entry);
+            user_password.SetCode(user_entry);
+            cout << "Type the city: ";
+            getline(cin, user_entry);
+            user_password.SetCode(user_entry);
+            cout << "Type the state: ";
+            getline(cin, user_entry);
+            user_password.SetCode(user_entry);
+            cout << "Type the daily feem : ";
+            getline(cin, user_entry);
+            user_password.SetCode(user_entry);
+            valid_data = true;
+        } catch (const invalid_argument &exp) {
+            cout << endl << "Wrong Format" << endl;
+        }
+    }
+}
+
+
 bool ServiceRegistrationController::RegisterUser(const Name &user_name, const Identifier &user_identifier, const Password &user_password) throw(runtime_error){
     User new_user(user_name, user_identifier, user_password);
     InsertNewUser sql_command(new_user);
@@ -127,4 +159,18 @@ bool ServiceRegistrationController::RegisterCheckingAccount(const CheckingAccoun
         cout << exp.what();
         return false;
     }
+}
+
+bool ServiceRegistrationController::RegisterAccommodation(const Accommodation &accommodation, const Identifier &user_identifier) throw(runtime_error){
+    InsertNewAccommodation sql_command(user_identifier, accommodation);
+
+    try {
+        sql_command.execute();
+        return true;
+    }
+    catch (DBError exp) {
+        cout << exp.what();
+        return false;
+    }
+
 }
