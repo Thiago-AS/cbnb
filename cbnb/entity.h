@@ -225,6 +225,9 @@ class CheckingAccount {
     Bank bank;
 
  public:
+    CheckingAccount(){};
+    CheckingAccount(CheckingAccountNumber number, Agency agency, Bank bank):
+    number(number), agency(agency), bank(bank){};
     /** @brief Set the domain CheckingAccountNumber to the class user.
      *  @param  number Class CheckingAccountNumber.
      */

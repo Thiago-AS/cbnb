@@ -53,5 +53,10 @@ public:
     InsertNewCreditCard(Identifier, CreditCard);
 };
 
+class InsertNewCheckingAccount:public SQLCommand {
+public:
+    InsertNewCheckingAccount(Identifier, CheckingAccount);
+};
+
 
 #endif

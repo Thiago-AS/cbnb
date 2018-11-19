@@ -75,3 +75,11 @@ InsertNewCreditCard::InsertNewCreditCard(Identifier user_identifier, CreditCard 
         command += "'" + credit_card.GetExpirationDate().GetValue() + "', ";
         command += "'" + user_identifier.GetCode() + "')";
 }
+
+InsertNewCheckingAccount::InsertNewCheckingAccount(Identifier user_identifier, CheckingAccount checking_account) {
+        command = "INSERT INTO CheckingAccount VALUES (";
+        command += "'" + checking_account.GetNumber().GetCode() + "', ";
+        command += "'" + checking_account.GetAgency().GetCode() + "', ";
+        command += "'" + checking_account.GetBank().GetCode() + "', ";
+        command += "'" + user_identifier.GetCode() + "')";
+}
