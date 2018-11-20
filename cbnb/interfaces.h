@@ -16,7 +16,7 @@ public:
 class UserRegistrationInterface{
 public:
     virtual bool RegisterUser() throw(runtime_error) = 0;
-    virtual bool RegisterAccommodation() throw(runtime_error) = 0;
+    virtual bool RegisterAccommodation(const Identifier&) throw(runtime_error) = 0;
     virtual void SetController(ServiceRegistrationInterface *) = 0;
     virtual ~UserRegistrationInterface(){}
 };
@@ -29,7 +29,7 @@ public:
 
 class UserAuthenticationInterface{
 public:
-    virtual bool Authenticate() throw(runtime_error) = 0;
+    virtual Identifier Authenticate() throw(runtime_error) = 0;
     virtual void SetController(ServiceAuthenticationInterface *) = 0;
     virtual ~UserAuthenticationInterface(){}
 };

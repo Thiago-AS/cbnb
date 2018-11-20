@@ -82,12 +82,16 @@ bool UserRegistrationController::RegisterUser() throw(runtime_error){
         return valid_registration;
     }
 
-
-
     return valid_registration;
 }
 
-bool UserRegistrationController::RegisterAccommodation() throw(runtime_error){
+bool UserRegistrationController::RegisterAccommodation(const Identifier& user_id) throw(runtime_error){
+    Identifier accommodation_identifier;
+    AccommodationCapacity capacity;
+    AccommodationType type;
+    Name city;
+    State state;
+    DailyFee fee;
     bool valid_registration, valid_data = false;
     string user_entry;
 
@@ -95,27 +99,34 @@ bool UserRegistrationController::RegisterAccommodation() throw(runtime_error){
         try{
             cout << "Type the accommodation identifier: ";
             getline(cin, user_entry);
-            user_name.SetCode(user_entry);
+            accommodation_identifier.SetCode(user_entry);
             cout << "Type the accommodation type: ";
             getline(cin, user_entry);
-            user_identifier.SetCode(user_entry);
+            type.SetCode(user_entry);
             cout << "Type the accommodation capacity: ";
             getline(cin, user_entry);
-            user_password.SetCode(user_entry);
+            capacity.SetAmount(stoi(user_entry));
             cout << "Type the city: ";
             getline(cin, user_entry);
-            user_password.SetCode(user_entry);
+            city.SetCode(user_entry);
             cout << "Type the state: ";
             getline(cin, user_entry);
-            user_password.SetCode(user_entry);
-            cout << "Type the daily feem : ";
+            state.SetCode(user_entry);
+            cout << "Type the daily fee : ";
             getline(cin, user_entry);
-            user_password.SetCode(user_entry);
+            fee.SetValue(stoi(user_entry));
             valid_data = true;
         } catch (const invalid_argument &exp) {
             cout << endl << "Wrong Format" << endl;
         }
     }
+    Accommodation new_accommodation(accommodation_identifier, type, capacity, city, state, fee);
+    valid_registration = sr_controller->RegisterAccommodation(new_accommodation, user_id);
+    if(!valid_registration){
+        cout << endl << "Registration failed" << endl;
+        return valid_registration;
+    }
+
 }
 
 

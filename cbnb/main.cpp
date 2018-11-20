@@ -10,8 +10,9 @@ int main() {
     ServiceRegistrationInterface *service_test = new ServiceRegistrationController();
 
     test->SetController(service_test);
-
-    cout << test->RegisterUser();
+    Identifier user_id;
+    user_id.SetCode("thiag");
+    cout << test->RegisterAccommodation(user_id);
 
 
     return 0;

@@ -13,7 +13,7 @@ class UserAuthenticationController:public UserAuthenticationInterface{
 private:
     ServiceAuthenticationInterface * sa_controller;
 public:
-    bool Authenticate() throw(runtime_error);
+    Identifier Authenticate() throw(runtime_error);
     void SetController(ServiceAuthenticationInterface *);
 };
 

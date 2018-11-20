@@ -88,9 +88,9 @@ InsertNewAccommodation::InsertNewAccommodation(Identifier user_identifier, Accom
         command = "INSERT INTO Accommodation VALUES (";
         command += "'" + accommodation.GetIdentifier().GetCode() + "', ";
         command += "'" + accommodation.GetType().GetCode() + "', ";
-        command += accommodation.GetCapacity().GetAmount() + ", ";
+        command += to_string(accommodation.GetCapacity().GetAmount()) + ", ";
         command += "'" + accommodation.GetCity().GetCode() + "', ";
         command += "'" + accommodation.GetState().GetCode() + "', ";
-        command += accommodation.GetDailyFee().GetValue() + ", ";
+        command += to_string(accommodation.GetDailyFee().GetValue()) + ", ";
         command += "'" + user_identifier.GetCode() + "')";
 }
