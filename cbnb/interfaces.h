@@ -31,7 +31,7 @@ public:
 
 class UserAuthenticationInterface{
 public:
-    virtual Identifier Authenticate() throw(runtime_error) = 0;
+    virtual string Authenticate() throw(runtime_error) = 0;
     virtual void SetController(ServiceAuthenticationInterface *) = 0;
     virtual ~UserAuthenticationInterface(){}
 };

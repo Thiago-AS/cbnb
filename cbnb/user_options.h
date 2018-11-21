@@ -4,7 +4,6 @@
 class UserOptionsController{
 public:
     void ShowLogin();
-    void ShowMainMenu();
     UserOptionsController();
     ~UserOptionsController();
 
@@ -13,4 +12,6 @@ private:
     ServiceRegistrationInterface *sr_controller;
     UserAuthenticationInterface *ua_controller;
     ServiceAuthenticationInterface *sa_controller;
+    void ShowMainMenu(const Identifier&);
+
 };

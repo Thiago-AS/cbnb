@@ -5,7 +5,7 @@ void UserAuthenticationController::SetController(ServiceAuthenticationInterface 
     this->sa_controller = sa_controller;
 }
 
-Identifier UserAuthenticationController::Authenticate() throw(runtime_error){
+string UserAuthenticationController::Authenticate() throw(runtime_error){
     Identifier user_identifier;
     Password user_password;
     bool valid_user,valid_data = false;
@@ -30,7 +30,7 @@ Identifier UserAuthenticationController::Authenticate() throw(runtime_error){
 		throw runtime_error("Authentication failed");
     }
 
-    return user_identifier;
+    return user_identifier.GetCode();
 }
 
 bool ServiceAuthenticationController::Authenticate(const Identifier &user_identifier, const Password &user_password) throw(runtime_error){
