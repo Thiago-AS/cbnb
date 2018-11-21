@@ -67,7 +67,6 @@ void UserOptionsController::ShowLogin(){
 void UserOptionsController::ShowMainMenu(const Identifier &user_id){
     system("cls");
     int user_option;
-    bool valid_registration;
     do{
         cout << "[1] Accommodations" << endl;
         cout << "[2] Availabilities" << endl;
@@ -105,3 +104,35 @@ void UserOptionsController::ShowMainMenu(const Identifier &user_id){
         }
     }while(user_option != 0);
 }
+
+void UserOptionsController::ShowAccommodationMenu(const Identifier &user_id){
+    system("cls");
+    int user_option;
+    bool valid_registration;
+    do{
+        cout << "[1] Register" << endl;
+        cout << "[2] Delete" << endl;
+        cout << "[0] Back" << endl << endl;
+        cout << "-> ";
+        cin >> user_option;
+        cin.ignore();
+
+        switch(user_option){
+        case 1:
+            valid_registration = ur_controller->RegisterAccommodation(user_id);
+            break;
+
+        case 2:
+            break;
+
+        case 0:
+            break;
+
+        default:
+            system("cls");
+            cout << "Type one of the options above" << endl;
+            break;
+        }
+    }while(user_option != 0);
+}
+
