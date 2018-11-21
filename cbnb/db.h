@@ -68,5 +68,15 @@ public:
     InsertNewAvailability(Identifier, Date, Date);
 };
 
+class SearchMyAccommodations:public SQLCommand {
+public:
+    SearchMyAccommodations(Identifier);
+    vector<pair<string, string>> GetMyAccommodations() throw(DBError);
+};
+
+class DeleteMyAccommodation:public SQLCommand {
+public:
+    DeleteMyAccommodation(Identifier);
+};
 
 #endif

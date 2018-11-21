@@ -101,3 +101,26 @@ InsertNewAvailability::InsertNewAvailability(Identifier accommodation_id, Date i
         command += "'" + end_date.GetValue() + "', ";
         command += "'" + accommodation_id.GetCode() + "')";
 }
+
+SearchMyAccommodations::SearchMyAccommodations(Identifier user_id) {
+        command = "SELECT Identifier, Type, Capacity, City, State, Fee FROM Accommodation WHERE HostId = '";
+        command += user_id.GetCode() + "'";
+}
+
+vector<pair<string, string>> SearchMyAccommodations::GetMyAccommodations() throw(DBError){
+    vector<pair<string, string>> my_accommodations;
+    if(result_list.empty())
+        throw DBError("No match found");
+
+    int result_list_size = result_list.size();
+    for(int i = 0; i < result_list_size; i++){
+        my_accommodations.push_back(result_list.back());
+        result_list.pop_back();
+    }
+    return my_accommodations;
+}
+
+DeleteMyAccommodation::DeleteMyAccommodation(Identifier accommodation_id){
+    command = "DELETE FROM Accommodation WHERE Identifier = '";
+    command += accommodation_id.GetCode() + "'";
+}

@@ -36,16 +36,18 @@ public:
     virtual ~UserAuthenticationInterface(){}
 };
 
+class ServiceExclusionInterface{
+public:
+    virtual bool DeleteAccommodation(const Identifier &) throw(runtime_error) = 0;
+    virtual ~ServiceExclusionInterface(){}
+};
+
 class UserExclusionInterface{
 public:
-    virtual void DeleteAccommodation() throw(runtime_error) = 0;
+    virtual bool DeleteAccommodation(const Identifier&) throw(runtime_error) = 0;
     virtual void SetController(ServiceExclusionInterface *) = 0;
     virtual ~UserExclusionInterface(){}
 };
 
-class ServiceExclusionInterface{
-public:
-    virtual void DeleteAccommodation() throw(runtime_error) = 0;
-    virtual ~ServiceExclusionInterface(){}
-};
+
 #endif // INTERFACES_H_INCLUDED

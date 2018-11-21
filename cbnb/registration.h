@@ -4,8 +4,6 @@
 #include "interfaces.h"
 #include "db.h"
 
-
-// TODO
 class ServiceRegistrationController:public ServiceRegistrationInterface{
 public:
     bool RegisterUser(const Name&, const Identifier&, const Password&) throw(runtime_error);
