@@ -2,6 +2,8 @@
 #define REGISTRATION_H_INCLUDED
 
 #include "interfaces.h"
+#include "db.h"
+
 
 // TODO
 class ServiceRegistrationController:public ServiceRegistrationInterface{

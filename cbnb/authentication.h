@@ -2,8 +2,8 @@
 #define AUTHENTICATION_H_INCLUDED
 
 #include "interfaces.h"
+#include "db.h"
 
-//TODO
 class ServiceAuthenticationController:public ServiceAuthenticationInterface{
 public:
     bool Authenticate(const Identifier&, const Password&) throw(runtime_error);
