@@ -13,5 +13,8 @@ private:
     UserAuthenticationInterface *ua_controller;
     ServiceAuthenticationInterface *sa_controller;
     void ShowMainMenu(const Identifier&);
-
+    void ShowAccommodationMenu(const Identifier&);
+    void ShowAvailabilitiesMenu(const Identifier&);
+    void ShowReservationMenu(const Identifier&);
+    void ShowAccountSettingsMenu(const Identifier&);
 };

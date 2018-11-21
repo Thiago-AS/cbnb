@@ -22,6 +22,7 @@ UserOptionsController::~UserOptionsController(){
 }
 
 void UserOptionsController::ShowLogin(){
+    system("cls");
     int user_option;
     bool valid_registration;
     Identifier user_id;
@@ -29,7 +30,7 @@ void UserOptionsController::ShowLogin(){
         cout << "Aircnc" << endl;
         cout << "[1] LogIn" << endl;
         cout << "[2] SignIn" << endl;
-        cout << "[3] Exit" << endl;
+        cout << "[0] Exit" << endl << endl;
         cout << "-> ";
         cin >> user_option;
         cin.ignore();
@@ -52,7 +53,7 @@ void UserOptionsController::ShowLogin(){
                 cout << "Registration failed" << endl;
             break;
 
-        case 3:
+        case 0:
             break;
 
         default:
@@ -60,9 +61,47 @@ void UserOptionsController::ShowLogin(){
             cout << "Type one of the options above" << endl;
             break;
         }
-    }while(user_option != 3);
+    }while(user_option != 0);
 }
 
 void UserOptionsController::ShowMainMenu(const Identifier &user_id){
-    cout << "main menu" << endl;
+    system("cls");
+    int user_option;
+    bool valid_registration;
+    do{
+        cout << "[1] Accommodations" << endl;
+        cout << "[2] Availabilities" << endl;
+        cout << "[3] Reservations" << endl;
+        cout << "[4] Account settings" << endl;
+        cout << "[0] LogOut" << endl << endl;
+        cout << "-> ";
+        cin >> user_option;
+        cin.ignore();
+
+        switch(user_option){
+        case 1:
+            ShowAccommodationMenu(user_id);
+            break;
+
+        case 2:
+            ShowAvailabilitiesMenu(user_id);
+            break;
+
+        case 3:
+            ShowReservationMenu(user_id);
+            break;
+
+        case 4:
+            ShowAccountSettingsMenu(user_id);
+            break;
+
+        case 0:
+            break;
+
+        default:
+            system("cls");
+            cout << "Type one of the options above" << endl;
+            break;
+        }
+    }while(user_option != 0);
 }
