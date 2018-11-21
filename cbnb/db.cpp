@@ -94,3 +94,10 @@ InsertNewAccommodation::InsertNewAccommodation(Identifier user_identifier, Accom
         command += to_string(accommodation.GetDailyFee().GetValue()) + ", ";
         command += "'" + user_identifier.GetCode() + "')";
 }
+
+InsertNewAvailability::InsertNewAvailability(Identifier accommodation_id, Date initial_date, Date end_date) {
+        command = "INSERT INTO Availability(InitialDate, EndDate, AccommodationId) VALUES (";
+        command += "'" + initial_date.GetValue() + "', ";
+        command += "'" + end_date.GetValue() + "', ";
+        command += "'" + accommodation_id.GetCode() + "')";
+}

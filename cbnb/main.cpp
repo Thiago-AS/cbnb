@@ -11,8 +11,8 @@ int main() {
 
     test->SetController(service_test);
     Identifier user_id;
-    user_id.SetCode("thiag");
-    cout << test->RegisterAccommodation(user_id);
+    user_id.SetCode("lolas");
+    cout << test->RegisterAvailability(user_id);
 
 
     return 0;

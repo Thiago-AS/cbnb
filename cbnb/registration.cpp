@@ -79,7 +79,6 @@ bool UserRegistrationController::RegisterUser() throw(runtime_error){
     valid_registration = sr_controller->RegisterCheckingAccount(ca_number, agency, bank, user_identifier);
     if(!valid_registration){
         cout << endl << "Registration failed" << endl;
-        return valid_registration;
     }
 
     return valid_registration;
@@ -124,9 +123,33 @@ bool UserRegistrationController::RegisterAccommodation(const Identifier& user_id
     valid_registration = sr_controller->RegisterAccommodation(new_accommodation, user_id);
     if(!valid_registration){
         cout << endl << "Registration failed" << endl;
-        return valid_registration;
     }
+    return valid_registration;
+}
 
+bool UserRegistrationController::RegisterAvailability(const Identifier &accommodation_id) throw(runtime_error) {
+    Date initial_date, end_date;
+    string user_entry;
+    bool valid_registration, valid_data = false;
+
+    while(!valid_data){
+        try{
+            cout << "Type the initial date: ";
+            getline(cin, user_entry);
+            initial_date.SetValue(user_entry);
+            cout << "Type the end date: ";
+            getline(cin, user_entry);
+            end_date.SetValue(user_entry);
+            valid_data = true;
+        } catch (const invalid_argument &exp) {
+            cout << endl << "Wrong Format" << endl;
+        }
+    }
+    valid_registration = sr_controller->RegisterAvailability(initial_date, end_date, accommodation_id);
+    if(!valid_registration){
+        cout << endl << "Registration failed" << endl;
+    }
+    return valid_registration;
 }
 
 
@@ -183,5 +206,17 @@ bool ServiceRegistrationController::RegisterAccommodation(const Accommodation &a
         cout << exp.what();
         return false;
     }
+}
 
+bool ServiceRegistrationController::RegisterAvailability(const Date &initial_date, const Date&end_date, const Identifier &accommodation_id) throw(runtime_error){
+    InsertNewAvailability sql_command(accommodation_id, initial_date, end_date);
+
+    try {
+        sql_command.execute();
+        return true;
+    }
+    catch (DBError exp) {
+        cout << exp.what();
+        return false;
+    }
 }

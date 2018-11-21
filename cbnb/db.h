@@ -63,5 +63,10 @@ public:
     InsertNewAccommodation(Identifier, Accommodation);
 };
 
+class InsertNewAvailability:public SQLCommand {
+public:
+    InsertNewAvailability(Identifier, Date, Date);
+};
+
 
 #endif

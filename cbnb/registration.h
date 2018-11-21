@@ -10,6 +10,7 @@ public:
     bool RegisterCreditCard(const CreditCardNumber&, const ExpirationDate&, const Identifier &) throw(runtime_error);
     bool RegisterCheckingAccount(const CheckingAccountNumber&, const Agency&, const Bank&, const Identifier &) throw(runtime_error);
     bool RegisterAccommodation(const Accommodation&, const Identifier&) throw(runtime_error);
+    bool RegisterAvailability(const Date&, const Date&, const Identifier&) throw(runtime_error);
 };
 
 class UserRegistrationController:public UserRegistrationInterface{

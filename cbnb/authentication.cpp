@@ -25,8 +25,10 @@ Identifier UserAuthenticationController::Authenticate() throw(runtime_error){
         }
     }
     valid_user = sa_controller->Authenticate(user_identifier, user_password);
-    if(!valid_user)
+    if(!valid_user){
         cout << endl << "Authentication failed" << endl;
+		throw runtime_error("Authentication failed");
+    }
 
     return user_identifier;
 }
