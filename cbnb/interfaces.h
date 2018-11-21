@@ -49,5 +49,17 @@ public:
     virtual ~UserExclusionInterface(){}
 };
 
+class ServiceSeekInterface{
+public:
+    virtual vector<pair<string, string>> SearchMyAccommodation(const Identifier &) throw(runtime_error) = 0;
+    virtual ~ServiceSeekInterface(){}
+};
+
+class UserSeekInterface{
+public:
+    virtual bool SearchMyAccommodation(const Identifier&) throw(runtime_error) = 0;
+    virtual void SetController(ServiceSeekInterface *) = 0;
+    virtual ~UserSeekInterface(){}
+};
 
 #endif // INTERFACES_H_INCLUDED

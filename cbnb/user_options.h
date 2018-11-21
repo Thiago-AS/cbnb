@@ -1,6 +1,7 @@
 #include "registration.h"
 #include "authentication.h"
 #include "exclusion.h"
+#include "seeking.h"
 
 class UserOptionsController{
 public:
@@ -15,6 +16,8 @@ private:
     ServiceAuthenticationInterface *sa_controller;
     UserExclusionInterface *ue_controller;
     ServiceExclusionInterface *se_controller;
+    UserSeekInterface *us_controller;
+    ServiceSeekInterface *ss_controller;
 
     void ShowMainMenu(const Identifier&);
     void ShowAccommodationMenu(const Identifier&);

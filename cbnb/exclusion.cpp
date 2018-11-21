@@ -6,23 +6,8 @@ void UserExclusionController::SetController(ServiceExclusionInterface *se_contro
 
 bool UserExclusionController::DeleteAccommodation(const Identifier &user_id) throw(runtime_error){
     Identifier accommodation_id;
-    vector<pair<string, string>> my_accommodations;
     string user_entry;
     bool valid_exclusion, valid_data = false;
-
-    cout << "My accommodations" << endl << endl;
-
-    SearchMyAccommodations sql_command(user_id);
-    try {
-        sql_command.execute();
-        my_accommodations = sql_command.GetMyAccommodations();
-        for(int i = my_accommodations.size()-1; i >= 0; i--){
-            cout << my_accommodations.at(i).first << ": " << my_accommodations.at(i).second << endl;
-        }
-    }
-    catch (DBError exp) {
-        cout << exp.what();
-    }
 
     while(!valid_data){
         try{

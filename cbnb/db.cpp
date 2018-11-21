@@ -110,7 +110,7 @@ SearchMyAccommodations::SearchMyAccommodations(Identifier user_id) {
 vector<pair<string, string>> SearchMyAccommodations::GetMyAccommodations() throw(DBError){
     vector<pair<string, string>> my_accommodations;
     if(result_list.empty())
-        throw DBError("No match found");
+        throw DBError("No registered accommodation");
 
     int result_list_size = result_list.size();
     for(int i = 0; i < result_list_size; i++){

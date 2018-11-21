@@ -1,5 +1,4 @@
 #include "user_options.h"
-#include "db.h"
 
 UserOptionsController::UserOptionsController(){
     ur_controller = new UserRegistrationController();
@@ -8,10 +7,13 @@ UserOptionsController::UserOptionsController(){
     sa_controller = new ServiceAuthenticationController();
     ue_controller = new UserExclusionController();
     se_controller = new ServiceExeclusionController();
+    us_controller = new UserSeekController();
+    ss_controller = new ServiceSeekController();
 
     ur_controller->SetController(sr_controller);
     ua_controller->SetController(sa_controller);
     ue_controller->SetController(se_controller);
+    us_controller->SetController(ss_controller);
 }
 
 UserOptionsController::~UserOptionsController(){
@@ -21,12 +23,16 @@ UserOptionsController::~UserOptionsController(){
     delete sa_controller;
     delete ue_controller;
     delete se_controller;
+    delete us_controller;
+    delete ss_controller;
     ur_controller = NULL;
     sr_controller = NULL;
     ua_controller = NULL;
     sa_controller = NULL;
     ue_controller = NULL;
     se_controller = NULL;
+    us_controller = NULL;
+    ss_controller = NULL;
 }
 
 void UserOptionsController::ShowLogin(){
@@ -50,7 +56,7 @@ void UserOptionsController::ShowLogin(){
                 user_id.SetCode(ua_controller->Authenticate());
                 ShowMainMenu(user_id);
             } catch (const runtime_error &exp) {
-                cout << "Authentication failed" << endl;
+                cout << exp.what() << endl;
             }
             break;
 
@@ -134,8 +140,8 @@ void UserOptionsController::ShowAccommodationMenu(const Identifier &user_id){
 
         case 2:
             system("cls");
-            ue_controller->DeleteAccommodation(user_id);
-
+            if(us_controller->SearchMyAccommodation(user_id))
+                ue_controller->DeleteAccommodation(user_id);
             break;
 
         case 0:
