@@ -15,7 +15,7 @@ bool UserExclusionController::DeleteAccommodation() throw(runtime_error){
             getline(cin, user_entry);
             accommodation_id.SetCode(user_entry);
             valid_data = true;
-        } catch (const invalid_argument &exp) {
+        }catch (const invalid_argument &exp){
             cout << "Wrong Format" << endl;
         }
     }
@@ -42,7 +42,7 @@ bool UserExclusionController::DeleteAvailability() throw(runtime_error){
             getline(cin, user_entry);
             end_date.SetValue(user_entry);
             valid_data = true;
-        } catch (const invalid_argument &exp) {
+        }catch (const invalid_argument &exp){
             cout << "Wrong Format" << endl;
         }
     }
@@ -54,11 +54,11 @@ bool UserExclusionController::DeleteAvailability() throw(runtime_error){
 bool ServiceExeclusionController::DeleteAccommodation(const Identifier &accommodation_id) throw(runtime_error){
     DeleteMyAccommodation sql_command(accommodation_id);
 
-    try {
+    try{
         sql_command.execute();
         return true;
     }
-    catch (DBError exp) {
+    catch (DBError exp){
         cout << exp.what();
         return false;
     }
@@ -66,11 +66,10 @@ bool ServiceExeclusionController::DeleteAccommodation(const Identifier &accommod
 
 bool ServiceExeclusionController::DeleteAvailability(const Date &initial_date, const Date &end_date, const Identifier &accommodation_id) throw(runtime_error){
     DeleteAccommodationAvailability sql_command(accommodation_id, initial_date, end_date);
-    try {
+    try{
         sql_command.execute();
         return true;
-    }
-    catch (DBError exp) {
+    }catch (DBError exp){
         cout << exp.what();
         return false;
     }

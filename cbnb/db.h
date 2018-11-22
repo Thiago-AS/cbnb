@@ -74,6 +74,12 @@ public:
     vector<pair<string, string>> GetMyAccommodations() throw(DBError);
 };
 
+class SearchMyAvailabilities:public SQLCommand{
+public:
+    SearchMyAvailabilities(Identifier);
+    vector<pair<string, string>> GetMyAvailabilities() throw(DBError);
+};
+
 class DeleteMyAccommodation:public SQLCommand {
 public:
     DeleteMyAccommodation(Identifier);

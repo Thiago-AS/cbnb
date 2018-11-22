@@ -176,7 +176,7 @@ void UserOptionsController::ShowAvailabilitiesMenu(const Identifier &user_id){
 
         case 2:
             system("cls");
-            if(us_controller->SearchMyAccommodation(user_id))
+            if(us_controller->SearchMyAvailabities(user_id))
                 ue_controller->DeleteAvailability();
             break;
 

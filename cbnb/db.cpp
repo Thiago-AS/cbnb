@@ -120,6 +120,24 @@ vector<pair<string, string>> SearchMyAccommodations::GetMyAccommodations() throw
     return my_accommodations;
 }
 
+SearchMyAvailabilities::SearchMyAvailabilities(Identifier user_id) {
+    command = "SELECT InitialDate, EndDate, AccommodationId FROM Availability WHERE AccommodationId IN (SELECT Identifier FROM Accommodation WHERE ";
+    command += "HostId = '" + user_id.GetCode() + "')";
+}
+
+vector<pair<string, string>> SearchMyAvailabilities::GetMyAvailabilities() throw(DBError){
+    vector<pair<string, string>> my_availabilities;
+    if(result_list.empty())
+        throw DBError("No registered availabilities");
+
+    int result_list_size = result_list.size();
+    for(int i = 0; i < result_list_size; i++){
+        my_availabilities.push_back(result_list.back());
+        result_list.pop_back();
+    }
+    return my_availabilities;
+}
+
 DeleteMyAccommodation::DeleteMyAccommodation(Identifier accommodation_id){
     command = "DELETE FROM Accommodation WHERE ";
     command += "Identifier = '" + accommodation_id.GetCode() + "'";

@@ -7,6 +7,7 @@
 class ServiceSeekController:public ServiceSeekInterface{
 public:
     vector<pair<string, string>> SearchMyAccommodation(const Identifier &) throw(runtime_error);
+    vector<pair<string, string>> SearchMyAvailabities(const Identifier &) throw(runtime_error);
 };
 
 class UserSeekController:public UserSeekInterface{
@@ -14,6 +15,7 @@ private:
     ServiceSeekInterface * ss_controller;
 public:
     bool SearchMyAccommodation(const Identifier&) throw(runtime_error);
+    bool SearchMyAvailabities(const Identifier&) throw(runtime_error);
     void SetController(ServiceSeekInterface *);
 };
 

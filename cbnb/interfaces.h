@@ -54,12 +54,14 @@ public:
 class ServiceSeekInterface{
 public:
     virtual vector<pair<string, string>> SearchMyAccommodation(const Identifier &) throw(runtime_error) = 0;
+    virtual vector<pair<string, string>> SearchMyAvailabities(const Identifier &) throw(runtime_error) = 0;
     virtual ~ServiceSeekInterface(){}
 };
 
 class UserSeekInterface{
 public:
     virtual bool SearchMyAccommodation(const Identifier&) throw(runtime_error) = 0;
+    virtual bool SearchMyAvailabities(const Identifier&) throw(runtime_error) = 0;
     virtual void SetController(ServiceSeekInterface *) = 0;
     virtual ~UserSeekInterface(){}
 };
