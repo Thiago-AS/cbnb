@@ -68,16 +68,27 @@ public:
     InsertNewAvailability(Identifier, Date, Date);
 };
 
+class InsertUserReservation:public SQLCommand{
+public:
+    InsertUserReservation(Identifier, int);
+};
+
 class SearchMyAccommodations:public SQLCommand {
 public:
     SearchMyAccommodations(Identifier);
     vector<pair<string, string>> GetMyAccommodations() throw(DBError);
 };
 
-class SearchMyAvailabilities:public SQLCommand{
+class SearchMyAvailability:public SQLCommand{
 public:
-    SearchMyAvailabilities(Identifier);
+    SearchMyAvailability(Identifier);
     vector<pair<string, string>> GetMyAvailabilities() throw(DBError);
+};
+
+class SearchAllAvaibleAvailabilities:public SQLCommand{
+public:
+    SearchAllAvaibleAvailabilities();
+    vector<pair<string, string>> GetAllAvaibleAvailabilities() throw(DBError);
 };
 
 class DeleteMyAccommodation:public SQLCommand {

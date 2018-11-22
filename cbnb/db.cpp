@@ -102,8 +102,14 @@ InsertNewAvailability::InsertNewAvailability(Identifier accommodation_id, Date i
         command += "'" + accommodation_id.GetCode() + "')";
 }
 
+InsertUserReservation::InsertUserReservation(Identifier user_id, int id){
+        command = "UPDATE Availability SET ";
+        command += "GuestId = '" + user_id.GetCode() + "' WHERE ";
+        command += "Id = " + to_string(id);
+};
+
 SearchMyAccommodations::SearchMyAccommodations(Identifier user_id) {
-        command = "SELECT Identifier, Type, Capacity, City, State, Fee FROM Accommodation WHERE HostId = '";
+        command = "SELECT Identifier as Accommodation, Type, Capacity, City, State, Fee FROM Accommodation WHERE HostId = '";
         command += user_id.GetCode() + "'";
 }
 
@@ -120,12 +126,12 @@ vector<pair<string, string>> SearchMyAccommodations::GetMyAccommodations() throw
     return my_accommodations;
 }
 
-SearchMyAvailabilities::SearchMyAvailabilities(Identifier user_id) {
-    command = "SELECT InitialDate, EndDate, AccommodationId FROM Availability WHERE AccommodationId IN (SELECT Identifier FROM Accommodation WHERE ";
+SearchMyAvailability::SearchMyAvailability(Identifier user_id) {
+    command = "SELECT InitialDate, EndDate, AccommodationId as Accommodation FROM Availability WHERE AccommodationId IN (SELECT Identifier FROM Accommodation WHERE ";
     command += "HostId = '" + user_id.GetCode() + "')";
 }
 
-vector<pair<string, string>> SearchMyAvailabilities::GetMyAvailabilities() throw(DBError){
+vector<pair<string, string>> SearchMyAvailability::GetMyAvailabilities() throw(DBError){
     vector<pair<string, string>> my_availabilities;
     if(result_list.empty())
         throw DBError("No registered availabilities");
@@ -136,6 +142,26 @@ vector<pair<string, string>> SearchMyAvailabilities::GetMyAvailabilities() throw
         result_list.pop_back();
     }
     return my_availabilities;
+}
+
+SearchAllAvaibleAvailabilities::SearchAllAvaibleAvailabilities(){
+    command = "SELECT Availability.Id, Availability.AccommodationId as Accommodation, Accommodation.Type, Accommodation.Capacity, ";
+    command += "Accommodation.City, Accommodation.State, Accommodation.Fee, Availability.InitialDate, Availability.EndDate ";
+    command += "FROM Availability INNER JOIN Accommodation ON Availability.AccommodationId = Accommodation.Identifier ";
+    command += "WHERE GuestId IS NULL";
+}
+
+vector<pair<string, string>> SearchAllAvaibleAvailabilities::GetAllAvaibleAvailabilities() throw(DBError){
+    vector<pair<string, string>> all_availabilities;
+    if(result_list.empty())
+        throw DBError("No registered availabilities");
+
+    int result_list_size = result_list.size();
+    for(int i = 0; i < result_list_size; i++){
+        all_availabilities.push_back(result_list.back());
+        result_list.pop_back();
+    }
+    return all_availabilities;
 }
 
 DeleteMyAccommodation::DeleteMyAccommodation(Identifier accommodation_id){

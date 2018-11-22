@@ -154,6 +154,17 @@ bool UserRegistrationController::RegisterAvailability() throw(runtime_error) {
     return valid_registration;
 }
 
+bool UserRegistrationController::RegisterReservation(const Identifier &user_id) throw(runtime_error){
+    bool valid_reservation;
+    int user_option;
+
+    cout << "Type the Id you want to reserve: ";
+    cin >> user_option;
+    cin.ignore();
+
+    valid_reservation = sr_controller->RegisterReservation(user_id, user_option);
+    return valid_reservation;
+}
 
 bool ServiceRegistrationController::RegisterUser(const Name &user_name, const Identifier &user_identifier, const Password &user_password) throw(runtime_error){
     User new_user(user_name, user_identifier, user_password);
@@ -212,6 +223,19 @@ bool ServiceRegistrationController::RegisterAccommodation(const Accommodation &a
 
 bool ServiceRegistrationController::RegisterAvailability(const Date &initial_date, const Date&end_date, const Identifier &accommodation_id) throw(runtime_error){
     InsertNewAvailability sql_command(accommodation_id, initial_date, end_date);
+
+    try {
+        sql_command.execute();
+        return true;
+    }
+    catch (DBError exp) {
+        cout << exp.what();
+        return false;
+    }
+}
+
+bool ServiceRegistrationController::RegisterReservation(const Identifier& user_id, int id) throw(runtime_error){
+    InsertUserReservation sql_command(user_id, id);
 
     try {
         sql_command.execute();

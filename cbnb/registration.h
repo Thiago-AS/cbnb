@@ -11,6 +11,7 @@ public:
     bool RegisterCheckingAccount(const CheckingAccountNumber&, const Agency&, const Bank&, const Identifier &) throw(runtime_error);
     bool RegisterAccommodation(const Accommodation&, const Identifier&) throw(runtime_error);
     bool RegisterAvailability(const Date&, const Date&, const Identifier&) throw(runtime_error);
+    bool RegisterReservation(const Identifier&, int) throw(runtime_error);
 };
 
 class UserRegistrationController:public UserRegistrationInterface{
@@ -20,6 +21,7 @@ public:
     bool RegisterUser() throw(runtime_error);
     bool RegisterAccommodation(const Identifier&) throw(runtime_error);
     bool RegisterAvailability() throw(runtime_error);
+    bool RegisterReservation(const Identifier&) throw(runtime_error);
     void SetController(ServiceRegistrationInterface *);
 };
 

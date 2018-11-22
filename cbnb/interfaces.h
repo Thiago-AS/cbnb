@@ -11,6 +11,7 @@ public:
     virtual bool RegisterCheckingAccount(const CheckingAccountNumber&, const Agency&, const Bank&, const Identifier &) throw(runtime_error) = 0;
     virtual bool RegisterAccommodation(const Accommodation&, const Identifier&) throw(runtime_error) = 0;
     virtual bool RegisterAvailability(const Date&, const Date&, const Identifier&) throw(runtime_error) = 0;
+    virtual bool RegisterReservation(const Identifier&, int) throw(runtime_error) = 0;
     virtual ~ServiceRegistrationInterface(){}
 };
 
@@ -19,6 +20,7 @@ public:
     virtual bool RegisterUser() throw(runtime_error) = 0;
     virtual bool RegisterAccommodation(const Identifier&) throw(runtime_error) = 0;
     virtual bool RegisterAvailability() throw(runtime_error) = 0;
+    virtual bool RegisterReservation(const Identifier&) throw(runtime_error) = 0;
     virtual void SetController(ServiceRegistrationInterface *) = 0;
     virtual ~UserRegistrationInterface(){}
 };
@@ -54,14 +56,16 @@ public:
 class ServiceSeekInterface{
 public:
     virtual vector<pair<string, string>> SearchMyAccommodation(const Identifier &) throw(runtime_error) = 0;
-    virtual vector<pair<string, string>> SearchMyAvailabities(const Identifier &) throw(runtime_error) = 0;
+    virtual vector<pair<string, string>> SearchMyAvailabilities(const Identifier &) throw(runtime_error) = 0;
+    virtual vector<pair<string, string>> SearchAllAvailabilities() throw(runtime_error) = 0;
     virtual ~ServiceSeekInterface(){}
 };
 
 class UserSeekInterface{
 public:
     virtual bool SearchMyAccommodation(const Identifier&) throw(runtime_error) = 0;
-    virtual bool SearchMyAvailabities(const Identifier&) throw(runtime_error) = 0;
+    virtual bool SearchMyAvailabilities(const Identifier&) throw(runtime_error) = 0;
+    virtual bool SearchAllAvailabilities() throw(runtime_error) = 0;
     virtual void SetController(ServiceSeekInterface *) = 0;
     virtual ~UserSeekInterface(){}
 };

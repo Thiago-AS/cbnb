@@ -201,7 +201,7 @@ void UserOptionsController::ShowAvailabilitiesMenu(const Identifier &user_id){
             break;
         case 2:
             system("cls");
-            if(us_controller->SearchMyAvailabities(user_id)){
+            if(us_controller->SearchMyAvailabilities(user_id)){
                 if(ue_controller->DeleteAvailability())
                     cout << endl << "Deleted successfully" << endl;
                 else
@@ -225,7 +225,54 @@ void UserOptionsController::ShowAvailabilitiesMenu(const Identifier &user_id){
 }
 
 void UserOptionsController::ShowReservationMenu(const Identifier &user_id){
+    system("cls");
+    int user_option;
+    do{
+        cout << "[1] Register" << endl;
+        cout << "[2] Delete" << endl;
+        cout << "[0] Back" << endl << endl;
+        cout << "-> ";
+        cin >> user_option;
+        cin.ignore();
+
+        switch(user_option){
+        case 1:
+            system("cls");
+            if(us_controller->SearchAllAvailabilities()){
+                if(ur_controller->RegisterReservation(user_id))
+                    cout << endl << "Reservation made successfully" << endl;
+                else
+                    cout << endl << "Reservation not made" << endl;
+            }
+            cout << endl << "Press enter to continue..." << endl;
+            getchar();
+            system("cls");
+            break;
+        case 2:
+            system("cls");
+            if(us_controller->SearchMyAvailabilities(user_id)){
+                if(ue_controller->DeleteAvailability())
+                    cout << endl << "Deleted successfully" << endl;
+                else
+                    cout << endl << "Deleted failed" << endl;
+            }
+            cout << endl << "Press enter to continue..." << endl;
+            getchar();
+            system("cls");
+            break;
+
+        case 0:
+            system("cls");
+            break;
+
+        default:
+            system("cls");
+            cout << "Type one of the options above" << endl;
+            break;
+        }
+    }while(user_option != 0);
 }
+
 
 void UserOptionsController::ShowAccountSettingsMenu(const Identifier &user_id){
 
