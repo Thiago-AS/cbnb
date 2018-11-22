@@ -58,6 +58,7 @@ public:
     virtual vector<pair<string, string>> SearchMyAccommodation(const Identifier &) throw(runtime_error) = 0;
     virtual vector<pair<string, string>> SearchMyAvailabilities(const Identifier &) throw(runtime_error) = 0;
     virtual vector<pair<string, string>> SearchAllAvailabilities() throw(runtime_error) = 0;
+    virtual vector<pair<string, string>> SearchMyReservation(const Identifier&) throw(runtime_error) = 0;
     virtual ~ServiceSeekInterface(){}
 };
 
@@ -66,6 +67,7 @@ public:
     virtual bool SearchMyAccommodation(const Identifier&) throw(runtime_error) = 0;
     virtual bool SearchMyAvailabilities(const Identifier&) throw(runtime_error) = 0;
     virtual bool SearchAllAvailabilities() throw(runtime_error) = 0;
+    virtual bool SearchMyReservation(const Identifier&) throw(runtime_error) = 0;
     virtual void SetController(ServiceSeekInterface *) = 0;
     virtual ~UserSeekInterface(){}
 };

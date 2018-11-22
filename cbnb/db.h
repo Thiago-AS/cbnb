@@ -91,6 +91,12 @@ public:
     vector<pair<string, string>> GetAllAvaibleAvailabilities() throw(DBError);
 };
 
+class SearchMyReservations:public SQLCommand{
+public:
+    SearchMyReservations(Identifier);
+    vector<pair<string, string>> GetMyReservations() throw(DBError);
+};
+
 class DeleteMyAccommodation:public SQLCommand {
 public:
     DeleteMyAccommodation(Identifier);

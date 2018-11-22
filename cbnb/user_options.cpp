@@ -250,8 +250,8 @@ void UserOptionsController::ShowReservationMenu(const Identifier &user_id){
             break;
         case 2:
             system("cls");
-            if(us_controller->SearchMyAvailabilities(user_id)){
-                if(ue_controller->DeleteAvailability())
+            if(us_controller->SearchMyReservation(user_id)){
+                if(true)
                     cout << endl << "Deleted successfully" << endl;
                 else
                     cout << endl << "Deleted failed" << endl;

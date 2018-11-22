@@ -9,6 +9,7 @@ public:
     vector<pair<string, string>> SearchMyAccommodation(const Identifier &) throw(runtime_error);
     vector<pair<string, string>> SearchMyAvailabilities(const Identifier &) throw(runtime_error);
     vector<pair<string, string>> SearchAllAvailabilities() throw(runtime_error);
+    vector<pair<string, string>> SearchMyReservation(const Identifier&) throw(runtime_error);
 };
 
 class UserSeekController:public UserSeekInterface{
@@ -18,6 +19,7 @@ public:
     bool SearchMyAccommodation(const Identifier&) throw(runtime_error);
     bool SearchMyAvailabilities(const Identifier&) throw(runtime_error);
     bool SearchAllAvailabilities() throw(runtime_error);
+    bool SearchMyReservation(const Identifier&) throw(runtime_error);
     void SetController(ServiceSeekInterface *);
 };
 

@@ -127,7 +127,7 @@ vector<pair<string, string>> SearchMyAccommodations::GetMyAccommodations() throw
 }
 
 SearchMyAvailability::SearchMyAvailability(Identifier user_id) {
-    command = "SELECT InitialDate, EndDate, AccommodationId as Accommodation FROM Availability WHERE AccommodationId IN (SELECT Identifier FROM Accommodation WHERE ";
+    command = "SELECT AccommodationId as Accommodation, InitialDate, EndDate FROM Availability WHERE AccommodationId IN (SELECT Identifier FROM Accommodation WHERE ";
     command += "HostId = '" + user_id.GetCode() + "')";
 }
 
@@ -163,6 +163,25 @@ vector<pair<string, string>> SearchAllAvaibleAvailabilities::GetAllAvaibleAvaila
     }
     return all_availabilities;
 }
+
+SearchMyReservations::SearchMyReservations(Identifier user_id){
+    command = "SELECT Id, AccommodationId as Accommodation, InitialDate, EndDate FROM Availability WHERE ";
+    command += "GuestId = '" + user_id.GetCode() + "'";
+}
+
+vector<pair<string, string>> SearchMyReservations::GetMyReservations() throw(DBError){
+    vector<pair<string, string>> my_reservations;
+    if(result_list.empty())
+        throw DBError("No registered availabilities");
+
+    int result_list_size = result_list.size();
+    for(int i = 0; i < result_list_size; i++){
+        my_reservations.push_back(result_list.back());
+        result_list.pop_back();
+    }
+    return my_reservations;
+}
+
 
 DeleteMyAccommodation::DeleteMyAccommodation(Identifier accommodation_id){
     command = "DELETE FROM Accommodation WHERE ";

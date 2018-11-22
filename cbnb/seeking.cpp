@@ -46,6 +46,21 @@ vector<pair<string, string>> ServiceSeekController::SearchAllAvailabilities() th
     return all_availabilities;
 }
 
+vector<pair<string, string>> ServiceSeekController::SearchMyReservation(const Identifier &user_id) throw(runtime_error){
+    SearchMyReservations sql_command(user_id);
+    vector<pair<string, string>> my_availabilities;
+
+    try {
+        sql_command.execute();
+        my_availabilities = sql_command.GetMyReservations();
+    }
+    catch (DBError exp) {
+        throw runtime_error(exp.what());
+    }
+    return my_availabilities;
+}
+
+
 
 bool UserSeekController::SearchMyAccommodation(const Identifier &user_id) throw(runtime_error){
     vector<pair<string, string>> my_accommodations;
@@ -101,3 +116,21 @@ bool UserSeekController::SearchAllAvailabilities() throw(runtime_error){
     }
 }
 
+bool UserSeekController::SearchMyReservation(const Identifier &user_id) throw(runtime_error){
+    vector<pair<string, string>> my_availabilities;
+    cout << "My reservations" << endl << endl;
+    try{
+        my_availabilities = ss_controller->SearchMyReservation(user_id);
+        for( int i = my_availabilities.size()-1, line = 1; i >= 0; line++, i--){
+            if(line%9 == 0)
+                cout << my_availabilities.at(i).first << ": " << my_availabilities.at(i).second << endl << endl;
+            else
+                cout << my_availabilities.at(i).first << ": " << my_availabilities.at(i).second << endl;
+        }
+        return true;
+    } catch (const runtime_error &exp) {
+        cout << exp.what() << endl;
+        return false;
+    }
+
+}
