@@ -22,12 +22,11 @@ string UserAuthenticationController::Authenticate() throw(runtime_error){
             valid_data = true;
         } catch (const invalid_argument &exp) {
             system("cls");
-            cout << "Wrong Format" << endl;
+            cout << "Wrong Format" << endl << endl;
         }
     }
     valid_user = sa_controller->Authenticate(user_identifier, user_password);
     if(!valid_user){
-        cout << endl << "Authentication failed" << endl;
 		throw runtime_error("Authentication failed");
     }
 

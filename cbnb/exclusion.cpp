@@ -11,12 +11,12 @@ bool UserExclusionController::DeleteAccommodation() throw(runtime_error){
 
     while(!valid_data){
         try{
-            cout << endl << "Type the accommodation identifier to be deleted: ";
+            cout << "Type the accommodation identifier to be deleted: ";
             getline(cin, user_entry);
             accommodation_id.SetCode(user_entry);
             valid_data = true;
         }catch (const invalid_argument &exp){
-            cout << "Wrong Format" << endl;
+            cout << "Wrong Format" << endl << endl;
         }
     }
 
@@ -32,7 +32,7 @@ bool UserExclusionController::DeleteAvailability() throw(runtime_error){
 
     while(!valid_data){
         try{
-            cout << endl << "Type the accommodation identifier to be deleted: ";
+            cout << "Type the accommodation identifier to be deleted: ";
             getline(cin, user_entry);
             accommodation_id.SetCode(user_entry);
             cout << "Type the inital date: ";
@@ -43,7 +43,7 @@ bool UserExclusionController::DeleteAvailability() throw(runtime_error){
             end_date.SetValue(user_entry);
             valid_data = true;
         }catch (const invalid_argument &exp){
-            cout << "Wrong Format" << endl;
+            cout << "Wrong Format" << endl << endl;
         }
     }
 

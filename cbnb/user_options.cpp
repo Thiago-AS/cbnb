@@ -38,10 +38,9 @@ UserOptionsController::~UserOptionsController(){
 void UserOptionsController::ShowLogin(){
     system("cls");
     int user_option;
-    bool valid_registration;
     Identifier user_id;
     do{
-        cout << "Aircnc" << endl;
+        cout << "Aircnc" << endl << endl;
         cout << "[1] LogIn" << endl;
         cout << "[2] SignIn" << endl;
         cout << "[0] Exit" << endl << endl;
@@ -56,16 +55,22 @@ void UserOptionsController::ShowLogin(){
                 user_id.SetCode(ua_controller->Authenticate());
                 ShowMainMenu(user_id);
             } catch (const runtime_error &exp) {
-                cout << exp.what() << endl;
+                cout << endl <<  exp.what() << endl << endl;
+                cout << "Press enter to continue..." << endl;
+                getchar();
+                system("cls");
             }
             break;
 
         case 2:
-            valid_registration = ur_controller->RegisterUser();
-            if(valid_registration)
-                cout << "Registered successfully" << endl;
+            if(ur_controller->RegisterUser())
+                cout << endl << "Registered successfully" << endl;
             else
-                cout << "Registration failed" << endl;
+                cout << endl << "Registration failed" << endl;
+
+            cout << endl << "Press enter to continue..." << endl;
+            getchar();
+            system("cls");
             break;
 
         case 0:
@@ -73,7 +78,7 @@ void UserOptionsController::ShowLogin(){
 
         default:
             system("cls");
-            cout << "Type one of the options above" << endl;
+            cout << "Type one of the options above" << endl << endl;
             break;
         }
     }while(user_option != 0);
@@ -135,13 +140,27 @@ void UserOptionsController::ShowAccommodationMenu(const Identifier &user_id){
         switch(user_option){
         case 1:
             system("cls");
-            ur_controller->RegisterAccommodation(user_id);
+            if(ur_controller->RegisterAccommodation(user_id))
+                cout << endl << "Registered successfully" << endl;
+            else
+                cout << endl << "Registration failed" << endl;
+
+            cout << endl << "Press enter to continue..." << endl;
+            getchar();
+            system("cls");
             break;
 
         case 2:
             system("cls");
-            if(us_controller->SearchMyAccommodation(user_id))
-                ue_controller->DeleteAccommodation();
+            if(us_controller->SearchMyAccommodation(user_id)){
+                if(ue_controller->DeleteAccommodation())
+                    cout << endl << "Deleted successfully" << endl;
+                else
+                    cout << endl << "Deleted failed" << endl;
+            }
+            cout << endl << "Press enter to continue..." << endl;
+            getchar();
+            system("cls");
             break;
 
         case 0:
@@ -170,14 +189,27 @@ void UserOptionsController::ShowAvailabilitiesMenu(const Identifier &user_id){
         switch(user_option){
         case 1:
             system("cls");
-            if(us_controller->SearchMyAccommodation(user_id))
-                ur_controller->RegisterAvailability();
+            if(us_controller->SearchMyAccommodation(user_id)){
+                if(ur_controller->RegisterAvailability())
+                    cout << endl << "Registered successfully" << endl;
+                else
+                    cout << endl << "Registration failed" << endl;
+            }
+            cout << endl << "Press enter to continue..." << endl;
+            getchar();
+            system("cls");
             break;
-
         case 2:
             system("cls");
-            if(us_controller->SearchMyAvailabities(user_id))
-                ue_controller->DeleteAvailability();
+            if(us_controller->SearchMyAvailabities(user_id)){
+                if(ue_controller->DeleteAvailability())
+                    cout << endl << "Deleted successfully" << endl;
+                else
+                    cout << endl << "Deleted failed" << endl;
+            }
+            cout << endl << "Press enter to continue..." << endl;
+            getchar();
+            system("cls");
             break;
 
         case 0:

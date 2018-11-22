@@ -39,8 +39,8 @@ bool UserSeekController::SearchMyAccommodation(const Identifier &user_id) throw(
     try{
         my_accommodations = ss_controller->SearchMyAccommodation(user_id);
         for( int i = my_accommodations.size()-1, line = 1; i >= 0; line++, i--){
-            if(line%7 == 0)
-                cout << endl << my_accommodations.at(i).first << ": " << my_accommodations.at(i).second << endl;
+            if(line%6 == 0)
+                cout << my_accommodations.at(i).first << ": " << my_accommodations.at(i).second << endl << endl;
             else
                 cout << my_accommodations.at(i).first << ": " << my_accommodations.at(i).second << endl;
         }
@@ -57,8 +57,8 @@ bool UserSeekController::SearchMyAvailabities(const Identifier &user_id) throw(r
     try{
         my_availabilities = ss_controller->SearchMyAvailabities(user_id);
         for( int i = my_availabilities.size()-1, line = 1; i >= 0; line++, i--){
-            if(line%4 == 0)
-                cout << endl << my_availabilities.at(i).first << ": " << my_availabilities.at(i).second << endl;
+            if(line%3 == 0)
+                cout << my_availabilities.at(i).first << ": " << my_availabilities.at(i).second << endl << endl;
             else
                 cout << my_availabilities.at(i).first << ": " << my_availabilities.at(i).second << endl;
         }

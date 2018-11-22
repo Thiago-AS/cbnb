@@ -14,6 +14,7 @@ bool UserRegistrationController::RegisterUser() throw(runtime_error){
 
     while(!valid_data){
         try{
+            cout << "User data" << endl << endl;
             cout << "Type your name: ";
             getline(cin, user_entry);
             user_name.SetCode(user_entry);
@@ -26,12 +27,11 @@ bool UserRegistrationController::RegisterUser() throw(runtime_error){
             valid_data = true;
         } catch (const invalid_argument &exp) {
             system("cls");
-            cout << "Wrong Format" << endl;
+            cout << "Wrong Format" << endl << endl;
         }
     }
     valid_registration = sr_controller->RegisterUser(user_name, user_identifier, user_password);
     if(!valid_registration){
-        cout << endl << "Registration failed" << endl;
         return valid_registration;
     }
 
@@ -40,6 +40,7 @@ bool UserRegistrationController::RegisterUser() throw(runtime_error){
     valid_data = false;
     while(!valid_data){
         try{
+            cout << "Credit Card data" << endl << endl;
             cout << "Type your credit card number: ";
             getline(cin, user_entry);
             card_number.SetCode(user_entry);
@@ -49,12 +50,11 @@ bool UserRegistrationController::RegisterUser() throw(runtime_error){
             valid_data = true;
         } catch (const invalid_argument &exp) {
             system("cls");
-            cout << "Wrong Format" << endl;
+            cout << "Wrong Format" << endl << endl;
         }
     }
     valid_registration = sr_controller->RegisterCreditCard(card_number, card_exp, user_identifier);
     if(!valid_registration){
-        cout << endl << "Registration failed" << endl;
         return valid_registration;
     }
 
@@ -64,6 +64,7 @@ bool UserRegistrationController::RegisterUser() throw(runtime_error){
     valid_data = false;
     while(!valid_data){
         try{
+            cout << "Checking Account data" << endl << endl;
             cout << "Type your checking account number: ";
             getline(cin, user_entry);
             ca_number.SetCode(user_entry);
@@ -76,13 +77,10 @@ bool UserRegistrationController::RegisterUser() throw(runtime_error){
             valid_data = true;
         } catch (const invalid_argument &exp) {
             system("cls");
-            cout << "Wrong Format" << endl;
+            cout << "Wrong Format" << endl << endl;
         }
     }
     valid_registration = sr_controller->RegisterCheckingAccount(ca_number, agency, bank, user_identifier);
-    if(!valid_registration){
-        cout << endl << "Registration failed" << endl;
-    }
 
     return valid_registration;
 }
@@ -120,14 +118,12 @@ bool UserRegistrationController::RegisterAccommodation(const Identifier& user_id
             valid_data = true;
         } catch (const invalid_argument &exp) {
             system("cls");
-            cout << "Wrong Format" << endl;
+            cout << "Wrong Format" << endl << endl;
         }
     }
     Accommodation new_accommodation(accommodation_identifier, type, capacity, city, state, fee);
     valid_registration = sr_controller->RegisterAccommodation(new_accommodation, user_id);
-    if(!valid_registration){
-        cout << endl << "Registration failed" << endl;
-    }
+
     return valid_registration;
 }
 
@@ -151,13 +147,10 @@ bool UserRegistrationController::RegisterAvailability() throw(runtime_error) {
             valid_data = true;
         } catch (const invalid_argument &exp) {
             system("cls");
-            cout << "Wrong Format" << endl;
+            cout << "Wrong Format" << endl << endl;
         }
     }
     valid_registration = sr_controller->RegisterAvailability(initial_date, end_date, accommodation_id);
-    if(!valid_registration){
-        cout << endl << "Registration failed" << endl;
-    }
     return valid_registration;
 }
 
