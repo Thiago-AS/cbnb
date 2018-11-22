@@ -7,13 +7,15 @@
 class ServiceExeclusionController:public ServiceExclusionInterface{
 public:
     bool DeleteAccommodation(const Identifier &) throw(runtime_error);
+    bool DeleteAvailability(const Date&, const Date&, const Identifier&) throw(runtime_error);
 };
 
 class UserExclusionController:public UserExclusionInterface{
 private:
     ServiceExclusionInterface * se_controller;
 public:
-    bool DeleteAccommodation(const Identifier &) throw(runtime_error);
+    bool DeleteAccommodation() throw(runtime_error);
+    bool DeleteAvailability() throw(runtime_error);
     void SetController(ServiceExclusionInterface *);
 };
 #endif

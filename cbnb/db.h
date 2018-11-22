@@ -79,4 +79,9 @@ public:
     DeleteMyAccommodation(Identifier);
 };
 
+class DeleteAccommodationAvailability:public SQLCommand{
+public:
+    DeleteAccommodationAvailability(Identifier, Date, Date);
+};
+
 #endif

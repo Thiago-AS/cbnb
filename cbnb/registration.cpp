@@ -25,7 +25,8 @@ bool UserRegistrationController::RegisterUser() throw(runtime_error){
             user_password.SetCode(user_entry);
             valid_data = true;
         } catch (const invalid_argument &exp) {
-            cout << endl << "Wrong Format" << endl;
+            system("cls");
+            cout << "Wrong Format" << endl;
         }
     }
     valid_registration = sr_controller->RegisterUser(user_name, user_identifier, user_password);
@@ -47,7 +48,8 @@ bool UserRegistrationController::RegisterUser() throw(runtime_error){
             card_exp.SetValue(user_entry);
             valid_data = true;
         } catch (const invalid_argument &exp) {
-            cout << endl << "Wrong Format" << endl;
+            system("cls");
+            cout << "Wrong Format" << endl;
         }
     }
     valid_registration = sr_controller->RegisterCreditCard(card_number, card_exp, user_identifier);
@@ -73,7 +75,8 @@ bool UserRegistrationController::RegisterUser() throw(runtime_error){
             bank.SetCode(user_entry);
             valid_data = true;
         } catch (const invalid_argument &exp) {
-            cout << endl << "Wrong Format" << endl;
+            system("cls");
+            cout << "Wrong Format" << endl;
         }
     }
     valid_registration = sr_controller->RegisterCheckingAccount(ca_number, agency, bank, user_identifier);
@@ -116,7 +119,8 @@ bool UserRegistrationController::RegisterAccommodation(const Identifier& user_id
             fee.SetValue(stoi(user_entry));
             valid_data = true;
         } catch (const invalid_argument &exp) {
-            cout << endl << "Wrong Format" << endl;
+            system("cls");
+            cout << "Wrong Format" << endl;
         }
     }
     Accommodation new_accommodation(accommodation_identifier, type, capacity, city, state, fee);
@@ -127,13 +131,17 @@ bool UserRegistrationController::RegisterAccommodation(const Identifier& user_id
     return valid_registration;
 }
 
-bool UserRegistrationController::RegisterAvailability(const Identifier &accommodation_id) throw(runtime_error) {
+bool UserRegistrationController::RegisterAvailability() throw(runtime_error) {
     Date initial_date, end_date;
+    Identifier accommodation_id;
     string user_entry;
     bool valid_registration, valid_data = false;
 
     while(!valid_data){
         try{
+            cout << "Type the accommodation identifier to add the dates: ";
+            getline(cin, user_entry);
+            accommodation_id.SetCode(user_entry);
             cout << "Type the initial date: ";
             getline(cin, user_entry);
             initial_date.SetValue(user_entry);
@@ -142,7 +150,8 @@ bool UserRegistrationController::RegisterAvailability(const Identifier &accommod
             end_date.SetValue(user_entry);
             valid_data = true;
         } catch (const invalid_argument &exp) {
-            cout << endl << "Wrong Format" << endl;
+            system("cls");
+            cout << "Wrong Format" << endl;
         }
     }
     valid_registration = sr_controller->RegisterAvailability(initial_date, end_date, accommodation_id);

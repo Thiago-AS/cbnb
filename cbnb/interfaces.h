@@ -18,7 +18,7 @@ class UserRegistrationInterface{
 public:
     virtual bool RegisterUser() throw(runtime_error) = 0;
     virtual bool RegisterAccommodation(const Identifier&) throw(runtime_error) = 0;
-    virtual bool RegisterAvailability(const Identifier&) throw(runtime_error) = 0;
+    virtual bool RegisterAvailability() throw(runtime_error) = 0;
     virtual void SetController(ServiceRegistrationInterface *) = 0;
     virtual ~UserRegistrationInterface(){}
 };
@@ -39,13 +39,15 @@ public:
 class ServiceExclusionInterface{
 public:
     virtual bool DeleteAccommodation(const Identifier &) throw(runtime_error) = 0;
+    virtual bool DeleteAvailability(const Date&, const Date&, const Identifier&) throw(runtime_error) = 0;
     virtual ~ServiceExclusionInterface(){}
 };
 
 class UserExclusionInterface{
 public:
-    virtual bool DeleteAccommodation(const Identifier&) throw(runtime_error) = 0;
+    virtual bool DeleteAccommodation() throw(runtime_error) = 0;
     virtual void SetController(ServiceExclusionInterface *) = 0;
+    virtual bool DeleteAvailability() throw(runtime_error) = 0;
     virtual ~UserExclusionInterface(){}
 };
 

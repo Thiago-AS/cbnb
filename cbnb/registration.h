@@ -19,7 +19,7 @@ private:
 public:
     bool RegisterUser() throw(runtime_error);
     bool RegisterAccommodation(const Identifier&) throw(runtime_error);
-    bool RegisterAvailability(const Identifier&) throw(runtime_error);
+    bool RegisterAvailability() throw(runtime_error);
     void SetController(ServiceRegistrationInterface *);
 };
 

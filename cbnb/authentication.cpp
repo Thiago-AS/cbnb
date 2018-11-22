@@ -21,7 +21,8 @@ string UserAuthenticationController::Authenticate() throw(runtime_error){
             user_password.SetCode(user_entry);
             valid_data = true;
         } catch (const invalid_argument &exp) {
-            cout << endl << "Wrong Format" << endl;
+            system("cls");
+            cout << "Wrong Format" << endl;
         }
     }
     valid_user = sa_controller->Authenticate(user_identifier, user_password);

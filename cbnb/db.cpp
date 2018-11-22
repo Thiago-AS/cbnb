@@ -121,6 +121,14 @@ vector<pair<string, string>> SearchMyAccommodations::GetMyAccommodations() throw
 }
 
 DeleteMyAccommodation::DeleteMyAccommodation(Identifier accommodation_id){
-    command = "DELETE FROM Accommodation WHERE Identifier = '";
-    command += accommodation_id.GetCode() + "'";
+    command = "DELETE FROM Accommodation WHERE ";
+    command += "Identifier = '" + accommodation_id.GetCode() + "'";
+}
+
+DeleteAccommodationAvailability::DeleteAccommodationAvailability(Identifier accommodation_id, Date initial_date, Date end_date){
+    command = "DELETE FROM Availability WHERE ";
+    command += "AccommodationId = '" + accommodation_id.GetCode() + "' AND ";
+    command += "InitialDate = '" + initial_date.GetValue() + "' AND ";
+    command += "EndDate = '" + end_date.GetValue() + "'";
+
 }

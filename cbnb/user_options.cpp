@@ -141,7 +141,7 @@ void UserOptionsController::ShowAccommodationMenu(const Identifier &user_id){
         case 2:
             system("cls");
             if(us_controller->SearchMyAccommodation(user_id))
-                ue_controller->DeleteAccommodation(user_id);
+                ue_controller->DeleteAccommodation();
             break;
 
         case 0:
@@ -157,6 +157,39 @@ void UserOptionsController::ShowAccommodationMenu(const Identifier &user_id){
 }
 
 void UserOptionsController::ShowAvailabilitiesMenu(const Identifier &user_id){
+    system("cls");
+    int user_option;
+    do{
+        cout << "[1] Register" << endl;
+        cout << "[2] Delete" << endl;
+        cout << "[0] Back" << endl << endl;
+        cout << "-> ";
+        cin >> user_option;
+        cin.ignore();
+
+        switch(user_option){
+        case 1:
+            system("cls");
+            if(us_controller->SearchMyAccommodation(user_id))
+                ur_controller->RegisterAvailability();
+            break;
+
+        case 2:
+            system("cls");
+            if(us_controller->SearchMyAccommodation(user_id))
+                ue_controller->DeleteAvailability();
+            break;
+
+        case 0:
+            system("cls");
+            break;
+
+        default:
+            system("cls");
+            cout << "Type one of the options above" << endl;
+            break;
+        }
+    }while(user_option != 0);
 }
 
 void UserOptionsController::ShowReservationMenu(const Identifier &user_id){

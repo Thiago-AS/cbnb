@@ -24,9 +24,13 @@ bool UserSeekController::SearchMyAccommodation(const Identifier &user_id) throw(
     vector<pair<string, string>> my_accommodations;
     cout << "My accommodations" << endl << endl;
     try{
-        ss_controller->SearchMyAccommodation(user_id);
-        for(int i = my_accommodations.size()-1; i >= 0; i--){
-            cout << my_accommodations.at(i).first << ": " << my_accommodations.at(i).second << endl;
+        my_accommodations = ss_controller->SearchMyAccommodation(user_id);
+        int line = 1;
+        for( int i = my_accommodations.size()-1; i >= 0; line++, i--){
+            if(line%6 == 0)
+                cout << endl;
+            else
+                cout << my_accommodations.at(i).first << ": " << my_accommodations.at(i).second << endl;
         }
         return true;
     } catch (const runtime_error &exp) {
